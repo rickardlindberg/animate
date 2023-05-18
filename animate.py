@@ -10,7 +10,7 @@ class Renderer:
     Render 80
     Write frame3.png
     Compose
-      command: ffmpeg -framerate 25 -pattern_type glob -i 'frame*.png' -c:v libx264 -pix_fmt yuv420p animation.mp4
+      command: ['ffmpeg', '-framerate', '25', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
     """
 
     def render(self, animation, destination, fps=25):
@@ -26,13 +26,13 @@ class Renderer:
             "ffmpeg",
             "-framerate", f"{fps}",
             "-pattern_type", "glob",
-            "-i", "'frame*.png'",
+            "-i", "frame*.png",
             "-c:v", "libx264",
             "-pix_fmt", "yuv420p",
             destination,
         ]
         print("Compose")
-        print(f"  command: {' '.join(command)}")
+        print(f"  command: {command}")
 
 class TestAnimation:
 
