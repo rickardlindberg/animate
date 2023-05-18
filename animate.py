@@ -11,13 +11,13 @@ class VideoRenderer:
     Reset
     Render
     Write frame1.png
-    Tick 1000
+    Update 1000
     Render
     Write frame2.png
-    Tick 1000
+    Update 1000
     Render
     Write frame3.png
-    Tick 1000
+    Update 1000
     PROCESS =>
       command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
     """
@@ -28,10 +28,8 @@ class VideoRenderer:
     def render(self, animation, destination, fps):
         animation.reset()
         time = 0
-        frames = []
         for index in range(animation.get_number_of_frames()):
             frame = f"frame{index+1}.png"
-            frames.append(frame)
             animation.render().write_to_file(frame)
             animation.update(int(1000/fps))
         self.process.run([
@@ -50,7 +48,7 @@ class TestAnimation:
         print("Reset")
 
     def update(self, elapsed_ms):
-        print(f"Tick {elapsed_ms}")
+        print(f"Update {elapsed_ms}")
 
     def render(self):
         print("Render")
