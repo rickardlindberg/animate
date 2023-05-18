@@ -2,10 +2,10 @@ class Renderer:
 
     """
     >>> renderer = Renderer()
-    >>> renderer.render(animation=TestAnimation(), path="animation.mp4")
+    >>> renderer.render(animation=TestAnimation(), destination="animation.mp4")
     """
 
-    def render(self, animation, path):
+    def render(self, animation, destination):
         pass
 
 class TestAnimation:
