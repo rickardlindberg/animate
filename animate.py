@@ -12,7 +12,7 @@ class Renderer:
     Compose frame1.png frame2.png frame3.png
     """
 
-    def render(self, animation, destination):
+    def render(self, animation, destination, fps=25):
         time = 0
         frames = []
         for index in range(animation.get_number_of_frames()):
