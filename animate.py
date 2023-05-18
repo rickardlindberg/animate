@@ -1,8 +1,8 @@
-class Renderer:
+class VideoRenderer:
 
     """
     >>> process = Process.create_null()
-    >>> renderer = Renderer(process=process)
+    >>> renderer = VideoRenderer(process=process)
     >>> renderer.render(
     ...     animation=TestAnimation(),
     ...     destination="animation.mp4",
