@@ -12,12 +12,15 @@ class VideoRenderer:
     ... )
     Reset
     FillRect =>
+      x: 10
     Write frame1.png
     Update 1000.0
     FillRect =>
+      x: 110.0
     Write frame2.png
     Update 1000.0
     FillRect =>
+      x: 210.0
     Write frame3.png
     Update 1000.0
     PROCESS =>
@@ -67,6 +70,7 @@ class Surface:
     >>> s = Surface()
     >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
     FillRect =>
+      x: 0
     """
 
     def __init__(self, width=400, height=400):
@@ -74,6 +78,7 @@ class Surface:
 
     def fill_rect(self, x, y, width, height, color):
         print("FillRect =>")
+        print(f"  x: {x}")
         ctx = cairo.Context(self.surface)
         ctx.rectangle(x, y, x+width, y+height)
         ctx.set_source_rgb(*color)
