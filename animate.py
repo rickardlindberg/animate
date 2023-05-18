@@ -59,6 +59,7 @@ class TestAnimation:
 
     def draw(self, surface):
         print("Render")
+        surface.fill_rect(self.x, 10, 10, 10, (0.1, 0.5, 0.8))
 
 class Surface:
 
