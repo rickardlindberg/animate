@@ -8,12 +8,16 @@ class VideoRenderer:
     ...     destination="animation.mp4",
     ...     fps=1,
     ... )
-    Render 0
+    Reset
+    Render
     Write frame1.png
-    Render 1000
+    Tick 1000
+    Render
     Write frame2.png
-    Render 2000
+    Tick 1000
+    Render
     Write frame3.png
+    Tick 1000
     PROCESS =>
       command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
     """
@@ -26,10 +30,10 @@ class VideoRenderer:
         time = 0
         frames = []
         for index in range(animation.get_number_of_frames()):
-            time = int(index*1000/fps)
             frame = f"frame{index+1}.png"
             frames.append(frame)
-            animation.render(time).write_to_file(frame)
+            animation.render().write_to_file(frame)
+            animation.tick(int(1000/fps))
         self.process.run([
             "ffmpeg",
             "-framerate", f"{fps}",
@@ -43,10 +47,13 @@ class VideoRenderer:
 class TestAnimation:
 
     def reset(self):
-        pass
+        print("Reset")
 
-    def render(self, time):
-        print(f"Render {time}")
+    def tick(self, elapsed_ms):
+        print(f"Tick {elapsed_ms}")
+
+    def render(self):
+        print("Render")
         return Surface()
 
     def get_number_of_frames(self):
