@@ -11,13 +11,13 @@ class VideoRenderer:
     Reset
     Render
     Write frame1.png
-    Update 1000
+    Update 1000.0
     Render
     Write frame2.png
-    Update 1000
+    Update 1000.0
     Render
     Write frame3.png
-    Update 1000
+    Update 1000.0
     PROCESS =>
       command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
     """
@@ -32,7 +32,7 @@ class VideoRenderer:
             surface = Surface()
             animation.draw(surface)
             surface.write_to_file(frame)
-            animation.update(int(1000/fps))
+            animation.update(1000/fps)
         self.process.run([
             "ffmpeg",
             "-framerate", f"{fps}",
