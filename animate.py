@@ -2,15 +2,19 @@ class Renderer:
 
     """
     >>> renderer = Renderer()
-    >>> renderer.render(animation=TestAnimation(), destination="animation.mp4")
+    >>> renderer.render(
+    ...     animation=TestAnimation(),
+    ...     destination="animation.mp4",
+    ...     fps=1,
+    ... )
     Render 0
     Write frame1.png
-    Render 40
+    Render 1000
     Write frame2.png
-    Render 80
+    Render 2000
     Write frame3.png
     Compose
-      command: ['ffmpeg', '-framerate', '25', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
+      command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
     """
 
     def render(self, animation, destination, fps=25):
