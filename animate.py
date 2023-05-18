@@ -33,7 +33,7 @@ class VideoRenderer:
             frame = f"frame{index+1}.png"
             frames.append(frame)
             animation.render().write_to_file(frame)
-            animation.tick(int(1000/fps))
+            animation.update(int(1000/fps))
         self.process.run([
             "ffmpeg",
             "-framerate", f"{fps}",
@@ -49,7 +49,7 @@ class TestAnimation:
     def reset(self):
         print("Reset")
 
-    def tick(self, elapsed_ms):
+    def update(self, elapsed_ms):
         print(f"Tick {elapsed_ms}")
 
     def render(self):
