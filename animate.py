@@ -76,10 +76,6 @@ class Surface:
 
     def __init__(self, width=400, height=400):
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
-        ctx = cairo.Context(self.surface)
-        ctx.rectangle(0, 0, width, height)
-        ctx.set_source_rgb(0, 1, 0)
-        ctx.fill()
 
     def fill_rect(self, x, y, width, height, color):
         print("FillRect =>")
