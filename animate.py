@@ -70,7 +70,7 @@ class Surface:
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
 
     def fill_rect(self, x, y, width, height, color):
-        pass
+        ctx = cairo.Context(self.surface)
 
     def write_to_file(self, destination):
         print(f"Write {destination}")
