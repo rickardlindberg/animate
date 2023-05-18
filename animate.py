@@ -16,8 +16,8 @@ class Renderer:
         time = 0
         frames = []
         for index in range(animation.get_number_of_frames()):
+            time = int(index*1000/fps)
             animation.render(time)
-            time += int(1000/fps)
             frame = f"frame{index+1}.png"
             frames.append(frame)
             print(f"Write {frame}")
