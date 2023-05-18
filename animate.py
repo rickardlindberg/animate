@@ -43,6 +43,9 @@ class VideoRenderer:
 
 class TestAnimation:
 
+    def get_number_of_frames(self):
+        return 3
+
     def reset(self):
         print("Reset")
 
@@ -52,9 +55,6 @@ class TestAnimation:
     def render(self):
         print("Render")
         return Surface()
-
-    def get_number_of_frames(self):
-        return 3
 
 class Surface:
 
