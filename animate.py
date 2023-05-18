@@ -1,8 +1,8 @@
-class Animation:
+class Renderer:
 
     """
-    >>> animation = Animation()
-    >>> animation.render("animation.mp4")
+    >>> renderer = Renderer()
+    >>> renderer.render("animation.mp4")
     """
 
     def render(self, path):
