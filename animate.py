@@ -29,7 +29,7 @@ class Renderer:
             "-i", "'frame*.png'",
             "-c:v", "libx264",
             "-pix_fmt", "yuv420p",
-            "animation.mp4",
+            destination,
         ]
         print("Compose")
         print(f"  command: {' '.join(command)}")
