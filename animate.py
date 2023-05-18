@@ -114,6 +114,6 @@ if __name__ == "__main__":
     renderer = VideoRenderer(process=Process.create())
     renderer.render(
         animation=TestAnimation(),
-        destination="/tmp/animation.webm",
+        destination="/tmp/animation.mov",
         fps=25,
     )
