@@ -2,7 +2,7 @@ class Renderer:
 
     """
     >>> renderer = Renderer()
-    >>> renderer.render(TestAnimation(), "animation.mp4")
+    >>> renderer.render(animation=TestAnimation(), path="animation.mp4")
     """
 
     def render(self, animation, path):
