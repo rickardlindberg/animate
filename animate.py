@@ -7,24 +7,24 @@ class VideoRenderer:
     >>> renderer = VideoRenderer(process=process)
     >>> renderer.render(
     ...     animation=TestAnimation(),
-    ...     destination="animation.mp4",
+    ...     destination="/tmp/animation.mp4",
     ...     fps=1,
     ... )
     Reset
     FillRect =>
       x: 10
-    Write frame1.png
+    Write /tmp/frame1.png
     Update 1000.0
     FillRect =>
       x: 110.0
-    Write frame2.png
+    Write /tmp/frame2.png
     Update 1000.0
     FillRect =>
       x: 210.0
-    Write frame3.png
+    Write /tmp/frame3.png
     Update 1000.0
     PROCESS =>
-      command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
+      command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
     """
 
     def __init__(self, process):
@@ -33,7 +33,7 @@ class VideoRenderer:
     def render(self, animation, destination, fps):
         animation.reset()
         for index in range(animation.get_number_of_frames()):
-            frame = f"frame{index+1}.png"
+            frame = f"/tmp/frame{index+1}.png"
             surface = Surface()
             animation.draw(surface)
             surface.write_to_file(frame)
@@ -42,7 +42,7 @@ class VideoRenderer:
             "ffmpeg",
             "-framerate", f"{fps}",
             "-pattern_type", "glob",
-            "-i", "frame*.png",
+            "-i", "/tmp/frame*.png",
             "-c:v", "libx264",
             "-pix_fmt", "yuv420p",
             destination,
