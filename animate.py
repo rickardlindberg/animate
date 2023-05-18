@@ -61,6 +61,14 @@ class TestAnimation:
 
 class Surface:
 
+    """
+    >>> s = Surface()
+    >>> s.fill_rect(0, 0, 10, 10, "#f0ff03")
+    """
+
+    def fill_rect(self, x, y, width, height, color):
+        pass
+
     def write_to_file(self, destination):
         print(f"Write {destination}")
 
