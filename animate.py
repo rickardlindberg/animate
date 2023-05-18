@@ -1,7 +1,8 @@
 class Renderer:
 
     """
-    >>> renderer = Renderer()
+    >>> process = Process.create_null()
+    >>> renderer = Renderer(process=process)
     >>> renderer.render(
     ...     animation=TestAnimation(),
     ...     destination="animation.mp4",
@@ -17,6 +18,9 @@ class Renderer:
       command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
     """
 
+    def __init__(self, process):
+        self.process = process
+
     def render(self, animation, destination, fps=25):
         time = 0
         frames = []
@@ -25,7 +29,7 @@ class Renderer:
             frame = f"frame{index+1}.png"
             frames.append(frame)
             animation.render(time).write_to_file(frame)
-        Process().run([
+        self.process.run([
             "ffmpeg",
             "-framerate", f"{fps}",
             "-pattern_type", "glob",
@@ -50,6 +54,10 @@ class Surface:
         print(f"Write {destination}")
 
 class Process:
+
+    @staticmethod
+    def create_null():
+        return Process()
 
     def run(self, command):
         print("PROCESS =>")
