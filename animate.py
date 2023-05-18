@@ -22,6 +22,7 @@ class VideoRenderer:
         self.process = process
 
     def render(self, animation, destination, fps):
+        animation.reset()
         time = 0
         frames = []
         for index in range(animation.get_number_of_frames()):
@@ -40,6 +41,9 @@ class VideoRenderer:
         ])
 
 class TestAnimation:
+
+    def reset(self):
+        pass
 
     def render(self, time):
         print(f"Render {time}")
