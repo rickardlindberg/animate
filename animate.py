@@ -14,15 +14,15 @@ class VideoRenderer:
     Reset
     FillRect =>
       x: 10
-    Write /tmp/frame1.png
+    Write /tmp/frame0001.png
     Update 1000.0
     FillRect =>
       x: 110.0
-    Write /tmp/frame2.png
+    Write /tmp/frame0002.png
     Update 1000.0
     FillRect =>
       x: 210.0
-    Write /tmp/frame3.png
+    Write /tmp/frame0003.png
     Update 1000.0
     PROCESS =>
       command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
@@ -34,7 +34,7 @@ class VideoRenderer:
     def render(self, animation, destination, fps):
         animation.reset()
         for frame_index in range(int(animation.get_duration_in_ms()/1000*fps)):
-            frame = f"/tmp/frame{frame_index+1}.png"
+            frame = f"/tmp/frame{frame_index+1:04}.png"
             surface = Surface()
             animation.draw(surface)
             surface.write_to_file(frame)
