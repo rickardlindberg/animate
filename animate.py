@@ -25,7 +25,7 @@ class VideoRenderer:
     Write /tmp/frame0003.png
     Update 1000.0
     PROCESS =>
-      command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuva420p', '/tmp/animation.mp4']
+      command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
     """
 
     def __init__(self, process):
@@ -45,7 +45,7 @@ class VideoRenderer:
             "-pattern_type", "glob",
             "-i", "/tmp/frame*.png",
             "-c:v", "libx264",
-            "-pix_fmt", "yuva420p",
+            "-pix_fmt", "yuv420p",
             destination,
         ])
 
