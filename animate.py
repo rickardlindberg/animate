@@ -48,7 +48,9 @@ class TestAnimation:
         return 3
 
 class Surface:
-    pass
+
+    def write_to_file(self, destination):
+        print(f"Write {destination}")
 
 if __name__ == "__main__":
     print("Animate")
