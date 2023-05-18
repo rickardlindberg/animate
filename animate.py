@@ -52,6 +52,7 @@ class TestAnimation:
 
     def reset(self):
         print("Reset")
+        self.x = 10
 
     def update(self, elapsed_ms):
         print(f"Update {elapsed_ms}")
