@@ -92,6 +92,10 @@ class Surface:
 class Process:
 
     @staticmethod
+    def create():
+        return Process(subprocess)
+
+    @staticmethod
     def create_null():
         class NullSubprocess:
             def run(self, command):
