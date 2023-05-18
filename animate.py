@@ -1,39 +1,49 @@
-class Renderer:
+import cairo
+import subprocess
+
+class VideoRenderer:
 
     """
     >>> process = Process.create_null()
-    >>> renderer = Renderer(process=process)
+    >>> renderer = VideoRenderer(process=process)
     >>> renderer.render(
     ...     animation=TestAnimation(),
-    ...     destination="animation.mp4",
+    ...     destination="/tmp/animation.mp4",
     ...     fps=1,
     ... )
-    Render 0
-    Write frame1.png
-    Render 1000
-    Write frame2.png
-    Render 2000
-    Write frame3.png
+    Reset
+    FillRect =>
+      x: 10
+    Write /tmp/frame0001.png
+    Update 1000.0
+    FillRect =>
+      x: 110.0
+    Write /tmp/frame0002.png
+    Update 1000.0
+    FillRect =>
+      x: 210.0
+    Write /tmp/frame0003.png
+    Update 1000.0
     PROCESS =>
-      command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
+      command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
     """
 
     def __init__(self, process):
         self.process = process
 
-    def render(self, animation, destination, fps=25):
-        time = 0
-        frames = []
-        for index in range(animation.get_number_of_frames()):
-            time = int(index*1000/fps)
-            frame = f"frame{index+1}.png"
-            frames.append(frame)
-            animation.render(time).write_to_file(frame)
+    def render(self, animation, destination, fps):
+        animation.reset()
+        for frame_index in range(int(animation.get_duration_in_ms()/1000*fps)):
+            frame = f"/tmp/frame{frame_index+1:04}.png"
+            surface = Surface()
+            animation.draw(surface)
+            surface.write_to_file(frame)
+            animation.update(1000/fps)
         self.process.run([
             "ffmpeg",
             "-framerate", f"{fps}",
             "-pattern_type", "glob",
-            "-i", "frame*.png",
+            "-i", "/tmp/frame*.png",
             "-c:v", "libx264",
             "-pix_fmt", "yuv420p",
             destination,
@@ -41,27 +51,69 @@ class Renderer:
 
 class TestAnimation:
 
-    def render(self, time):
-        print(f"Render {time}")
-        return Surface()
+    def get_duration_in_ms(self):
+        return 3000
 
-    def get_number_of_frames(self):
-        return 3
+    def reset(self):
+        print("Reset")
+        self.x = 10
+
+    def update(self, elapsed_ms):
+        print(f"Update {elapsed_ms}")
+        self.x += elapsed_ms*0.1
+
+    def draw(self, surface):
+        surface.fill_rect(self.x, 10, 10, 10, (0.1, 0.5, 0.8))
 
 class Surface:
 
+    """
+    >>> s = Surface()
+    >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
+    FillRect =>
+      x: 0
+    """
+
+    def __init__(self, width=400, height=400):
+        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+
+    def fill_rect(self, x, y, width, height, color):
+        print("FillRect =>")
+        print(f"  x: {x}")
+        ctx = cairo.Context(self.surface)
+        ctx.rectangle(x, y, width, height)
+        ctx.set_source_rgb(*color)
+        ctx.fill()
+
     def write_to_file(self, destination):
         print(f"Write {destination}")
+        self.surface.write_to_png(destination)
 
 class Process:
 
     @staticmethod
+    def create():
+        return Process(subprocess)
+
+    @staticmethod
     def create_null():
-        return Process()
+        class NullSubprocess:
+            def run(self, command):
+                pass
+        return Process(NullSubprocess())
+
+    def __init__(self, subprocess):
+        self.subprocess = subprocess
 
     def run(self, command):
         print("PROCESS =>")
         print(f"  command: {command}")
+        self.subprocess.run(command)
 
 if __name__ == "__main__":
-    print("Animate")
+    renderer = VideoRenderer(process=Process.create())
+    renderer.render(
+        animation=TestAnimation(),
+        destination="/tmp/animation.mp4",
+        fps=25,
+    )
