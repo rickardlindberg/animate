@@ -42,9 +42,13 @@ class TestAnimation:
 
     def render(self, time):
         print(f"Render {time}")
+        return Surface()
 
     def get_number_of_frames(self):
         return 3
+
+class Surface:
+    pass
 
 if __name__ == "__main__":
     print("Animate")
