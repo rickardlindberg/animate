@@ -1,4 +1,5 @@
 import cairo
+import subprocess
 
 class VideoRenderer:
 
@@ -97,6 +98,7 @@ class Process:
     def run(self, command):
         print("PROCESS =>")
         print(f"  command: {command}")
+        subprocess.run(command)
 
 if __name__ == "__main__":
     print("Animate")
