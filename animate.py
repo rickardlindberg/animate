@@ -66,6 +66,9 @@ class Surface:
     >>> s.fill_rect(0, 0, 10, 10, "#f0ff03")
     """
 
+    def __init__(self, width=400, height=400):
+        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+
     def fill_rect(self, x, y, width, height, color):
         pass
 
