@@ -86,6 +86,7 @@ class Surface:
 
     def write_to_file(self, destination):
         print(f"Write {destination}")
+        self.surface.write_to_png(destination)
 
 class Process:
 
