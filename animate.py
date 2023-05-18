@@ -13,7 +13,7 @@ class Renderer:
     Write frame2.png
     Render 2000
     Write frame3.png
-    Compose
+    PROCESS =>
       command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', 'frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', 'animation.mp4']
     """
 
@@ -25,7 +25,7 @@ class Renderer:
             frame = f"frame{index+1}.png"
             frames.append(frame)
             animation.render(time).write_to_file(frame)
-        command = [
+        Process().run([
             "ffmpeg",
             "-framerate", f"{fps}",
             "-pattern_type", "glob",
@@ -33,9 +33,7 @@ class Renderer:
             "-c:v", "libx264",
             "-pix_fmt", "yuv420p",
             destination,
-        ]
-        print("Compose")
-        print(f"  command: {command}")
+        ])
 
 class TestAnimation:
 
@@ -50,6 +48,12 @@ class Surface:
 
     def write_to_file(self, destination):
         print(f"Write {destination}")
+
+class Process:
+
+    def run(self, command):
+        print("PROCESS =>")
+        print(f"  command: {command}")
 
 if __name__ == "__main__":
     print("Animate")
