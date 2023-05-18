@@ -1,3 +1,5 @@
+import cairo
+
 class VideoRenderer:
 
     """
