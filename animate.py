@@ -72,6 +72,7 @@ class Surface:
     def fill_rect(self, x, y, width, height, color):
         ctx = cairo.Context(self.surface)
         ctx.rectangle(x, y, x+width, y+height)
+        ctx.fill()
 
     def write_to_file(self, destination):
         print(f"Write {destination}")
