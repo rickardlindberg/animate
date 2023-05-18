@@ -63,7 +63,7 @@ class Surface:
 
     """
     >>> s = Surface()
-    >>> s.fill_rect(0, 0, 10, 10, "#f0ff03")
+    >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
     """
 
     def __init__(self, width=400, height=400):
@@ -72,6 +72,7 @@ class Surface:
     def fill_rect(self, x, y, width, height, color):
         ctx = cairo.Context(self.surface)
         ctx.rectangle(x, y, x+width, y+height)
+        ctx.set_source_rgb(*color)
         ctx.fill()
 
     def write_to_file(self, destination):
