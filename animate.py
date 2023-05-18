@@ -59,7 +59,6 @@ class TestAnimation:
         self.x += elapsed_ms*0.1
 
     def draw(self, surface):
-        print("Render")
         surface.fill_rect(self.x, 10, 10, 10, (0.1, 0.5, 0.8))
 
 class Surface:
@@ -67,12 +66,14 @@ class Surface:
     """
     >>> s = Surface()
     >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
+    Render
     """
 
     def __init__(self, width=400, height=400):
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
 
     def fill_rect(self, x, y, width, height, color):
+        print("Render")
         ctx = cairo.Context(self.surface)
         ctx.rectangle(x, y, x+width, y+height)
         ctx.set_source_rgb(*color)
