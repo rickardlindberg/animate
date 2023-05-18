@@ -33,7 +33,7 @@ class VideoRenderer:
 
     def render(self, animation, destination, fps):
         animation.reset()
-        for index in range(animation.get_number_of_frames()):
+        for index in range(int(animation.get_duration_in_ms()/(fps*1000))):
             frame = f"/tmp/frame{index+1}.png"
             surface = Surface()
             animation.draw(surface)
@@ -51,8 +51,8 @@ class VideoRenderer:
 
 class TestAnimation:
 
-    def get_number_of_frames(self):
-        return 3
+    def get_duration_in_ms(self):
+        return 3000
 
     def reset(self):
         print("Reset")
