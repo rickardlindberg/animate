@@ -29,7 +29,9 @@ class VideoRenderer:
         animation.reset()
         for index in range(animation.get_number_of_frames()):
             frame = f"frame{index+1}.png"
-            animation.render().write_to_file(frame)
+            surface = Surface()
+            animation.draw(surface)
+            surface.write_to_file(frame)
             animation.update(int(1000/fps))
         self.process.run([
             "ffmpeg",
@@ -52,9 +54,8 @@ class TestAnimation:
     def update(self, elapsed_ms):
         print(f"Update {elapsed_ms}")
 
-    def render(self):
+    def draw(self, surface):
         print("Render")
-        return Surface()
 
 class Surface:
 
