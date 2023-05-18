@@ -22,10 +22,9 @@ class Renderer:
         frames = []
         for index in range(animation.get_number_of_frames()):
             time = int(index*1000/fps)
-            animation.render(time)
             frame = f"frame{index+1}.png"
             frames.append(frame)
-            print(f"Write {frame}")
+            animation.render(time).write_to_file(frame)
         command = [
             "ffmpeg",
             "-framerate", f"{fps}",
