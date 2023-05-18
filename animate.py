@@ -33,8 +33,8 @@ class VideoRenderer:
 
     def render(self, animation, destination, fps):
         animation.reset()
-        for index in range(int(animation.get_duration_in_ms()/(fps*1000))):
-            frame = f"/tmp/frame{index+1}.png"
+        for frame_index in range(int(animation.get_duration_in_ms()/(fps*1000))):
+            frame = f"/tmp/frame{frame_index+1}.png"
             surface = Surface()
             animation.draw(surface)
             surface.write_to_file(frame)
