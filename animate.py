@@ -27,7 +27,6 @@ class VideoRenderer:
 
     def render(self, animation, destination, fps):
         animation.reset()
-        time = 0
         for index in range(animation.get_number_of_frames()):
             frame = f"frame{index+1}.png"
             animation.render().write_to_file(frame)
