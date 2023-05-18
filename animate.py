@@ -24,7 +24,7 @@ class Renderer:
             print(f"Write {frame}")
         command = [
             "ffmpeg",
-            "-framerate", "25",
+            "-framerate", f"{fps}",
             "-pattern_type", "glob",
             "-i", "'frame*.png'",
             "-c:v", "libx264",
