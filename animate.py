@@ -93,12 +93,18 @@ class Process:
 
     @staticmethod
     def create_null():
-        return Process()
+        class NullSubprocess:
+            def run(self, command):
+                pass
+        return Process(NullSubprocess())
+
+    def __init__(self, subprocess):
+        self.subprocess = subprocess
 
     def run(self, command):
         print("PROCESS =>")
         print(f"  command: {command}")
-        subprocess.run(command)
+        self.subprocess.run(command)
 
 if __name__ == "__main__":
     print("Animate")
