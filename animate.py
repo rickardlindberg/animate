@@ -21,7 +21,7 @@ class VideoRenderer:
     def __init__(self, process):
         self.process = process
 
-    def render(self, animation, destination, fps=25):
+    def render(self, animation, destination, fps):
         time = 0
         frames = []
         for index in range(animation.get_number_of_frames()):
