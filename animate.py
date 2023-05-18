@@ -80,7 +80,7 @@ class Surface:
         print("FillRect =>")
         print(f"  x: {x}")
         ctx = cairo.Context(self.surface)
-        ctx.rectangle(x, y, x+width, y+height)
+        ctx.rectangle(x, y, width, height)
         ctx.set_source_rgb(*color)
         ctx.fill()
 
