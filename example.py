@@ -2,6 +2,10 @@ import animationstudio
 
 class ExampleAnimation:
 
+    """
+    >>> ExampleAnimation().dry_run()
+    """
+
     def get_duration_in_ms(self):
         return 3000
 
