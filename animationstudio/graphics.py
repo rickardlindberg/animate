@@ -29,6 +29,8 @@ class Graphics:
                     pass
                 def scale(self, x_factor, y_factor):
                     pass
+                def move_to(self, x, y):
+                    pass
             Context = NullContext
             class NullImageSurface:
                 def __init__(self, format_, width, height):
