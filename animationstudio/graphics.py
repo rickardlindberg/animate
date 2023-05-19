@@ -36,6 +36,8 @@ class Graphics:
                     pass
                 def set_font_size(self, size):
                     pass
+                def text_extents(self, text):
+                    pass
             Context = NullContext
             class NullImageSurface:
                 def __init__(self, format_, width, height):
