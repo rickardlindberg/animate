@@ -1,8 +1,11 @@
 from animations.test import TestAnimation
 
+import pygame
+
 class Preview:
 
     """
+    >>> Preview.create().run(TestAnimation())
     """
 
     @staticmethod
