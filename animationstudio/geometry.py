@@ -27,8 +27,8 @@ class Size(namedtuple("Size", "width,height")):
         Size(width=200, height=200)
         """
         return Size(
-            width=self.width*factor,
-            height=self.height*factor
+            width=int(self.width*factor),
+            height=int(self.height*factor)
         )
 
 class Point(namedtuple("Pint", "x,y")):
