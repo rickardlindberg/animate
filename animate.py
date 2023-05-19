@@ -1,6 +1,5 @@
 from graphics import Graphics
 
-import cairo
 import subprocess
 
 class VideoRenderer:
