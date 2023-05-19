@@ -17,6 +17,9 @@ class ExampleAnimation(Animation):
       command: ['ffmpeg', '-framerate', '25', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
     """
 
+    def get_size(self):
+        return Size(width=400, height=400)
+
     def get_duration_in_ms(self):
         return 3000
 
