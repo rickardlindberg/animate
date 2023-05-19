@@ -108,6 +108,9 @@ class CairoSurfaceWrapper:
             ctx.translate(position.x, position.y)
             ctx.text_path(text)
             ctx.fill()
+            ctx.text_path(text)
+            ctx.set_source_rgb(0.2, 1, 1)
+            ctx.stroke()
 
     def apply_generic_attributes(self, ctx, **kwargs):
         if "scale" in kwargs:
