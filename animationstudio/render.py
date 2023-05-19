@@ -31,7 +31,7 @@ class VideoRenderer:
         animation.reset()
         for frame_index in range(int(animation.get_duration_in_ms()/1000*fps)):
             frame = f"/tmp/frame{frame_index+1:04}.png"
-            surface = self.graphics.create_surface(400, 400)
+            surface = self.graphics.create_surface(animation.get_size())
             animation.draw(surface)
             surface.write_to_file(frame)
             animation.update(1000/fps)

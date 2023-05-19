@@ -1,3 +1,5 @@
+from animationstudio.geometry import Size
+
 import cairo
 
 class Graphics:
@@ -31,21 +33,25 @@ class Graphics:
     def __init__(self, cairo):
         self.cairo = cairo
 
-    def create_surface(self, width, height):
-        return CairoSurfaceWrapper(self.cairo, width, height)
+    def create_surface(self, size):
+        return CairoSurfaceWrapper(self.cairo, size)
 
 class CairoSurfaceWrapper:
 
     """
-    >>> s = CairoSurfaceWrapper(cairo, 400, 400)
+    >>> s = CairoSurfaceWrapper(cairo, Size(width=400, height=400))
     >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
     FillRect =>
       x: 0
     """
 
-    def __init__(self, cairo, width, height):
+    def __init__(self, cairo, size):
         self.cairo = cairo
-        self.surface = self.cairo.ImageSurface(self.cairo.FORMAT_ARGB32, width, height)
+        self.surface = self.cairo.ImageSurface(
+            self.cairo.FORMAT_ARGB32,
+            size.width,
+            size.height
+        )
 
     def fill_rect(self, x, y, width, height, color):
         print("FillRect =>")
