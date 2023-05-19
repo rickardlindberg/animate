@@ -90,7 +90,7 @@ class Preview:
 
     def loop(self, animation):
         self.pygame.init()
-        screen = self.pygame.display.set_mode((1280, 720))
+        screen = self.pygame.display.set_mode(animation.get_size())
         clock = self.pygame.time.Clock()
         animation.reset()
         elapsed_ms = 0
