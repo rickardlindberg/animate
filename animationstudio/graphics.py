@@ -96,8 +96,7 @@ class CairoSurfaceWrapper:
             ctx.set_source_rgb(1, 1, 1)
             ctx.set_font_size(500)
             extents = ctx.text_extents(text)
-            position = adjust_position(
-                position,
+            position = position.adjust(
                 Size(width=extents.width, height=extents.height),
                 pointspec
             ).move(dy=extents.height)
@@ -110,23 +109,3 @@ class CairoSurfaceWrapper:
 
     def get_data(self):
         return self.surface.get_data()
-
-def adjust_position(position, size, pointspec):
-    """
-    >>> adjust_position(Point(0, 0), Size(100, 100), "topleft")
-    Point(x=0, y=0)
-
-    >>> adjust_position(Point(0, 0), Size(100, 100), "center")
-    Point(x=-50, y=-50)
-
-    >>> adjust_position(Point(0, 0), Size(100, 100), "unknown spec")
-    Traceback (most recent call last):
-      ...
-    ValueError: Unknown pointspec 'unknown spec'.
-    """
-    if pointspec == "center":
-        return position.move(dx=-size.width//2, dy=-size.height//2)
-    elif pointspec == "topleft":
-        return position
-    else:
-        raise ValueError(f"Unknown pointspec {pointspec!r}.")
