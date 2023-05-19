@@ -36,6 +36,7 @@ class VideoRenderer:
 
     def __init__(self, process):
         self.process = process
+        self.graphics = Graphics()
 
     def render(self, animation, destination, fps):
         animation.reset()
