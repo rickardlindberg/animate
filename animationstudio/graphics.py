@@ -100,7 +100,7 @@ class CairoSurfaceWrapper:
                 position,
                 Size(width=extents.width, height=extents.height),
                 pointspec
-            )
+            ).move(dy=extents.height)
             ctx.move_to(position.x, position.y)
             ctx.show_text(text)
 
