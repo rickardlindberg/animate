@@ -29,14 +29,15 @@ class Graphics:
                     pass
                 def scale(self, x_factor, y_factor):
                     pass
-            class ImageSurface:
+            Context = NullContext
+            class NullImageSurface:
                 def __init__(self, format_, width, height):
                     pass
                 def write_to_png(self, destination):
                     pass
                 def get_data(self):
                     pass
-            Context = NullContext
+            ImageSurface = NullImageSurface
         return Graphics(NullCairoModule())
 
     def __init__(self, cairo):
