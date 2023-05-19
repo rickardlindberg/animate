@@ -114,7 +114,7 @@ class Preview:
                 x, y = screen_size.center(preview_size)
                 w, h = preview_size
                 self.pygame.draw.rect(screen, "black", (x, y, w, h))
-                surface = self.graphics.create_surface(preview_size)
+                surface = self.graphics.create_surface(preview_size, scale_factor)
                 animation.update(elapsed_ms)
                 animation.draw(surface)
                 image = self.pygame.image.frombuffer(
