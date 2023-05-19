@@ -1,4 +1,5 @@
 from animationstudio.graphics import Graphics
+from animationstudio.render import VideoRenderer
 
 import pygame
 
@@ -11,7 +12,11 @@ class Preview:
 
     @staticmethod
     def create():
-        return Preview(pygame=pygame, graphics=Graphics.create())
+        return Preview(
+            pygame=pygame,
+            graphics=Graphics.create(),
+            renderer=VideoRenderer.create()
+        )
 
     @staticmethod
     def create_null():
@@ -44,11 +49,16 @@ class Preview:
                 pass
             def quit(self):
                 pass
-        return Preview(pygame=NullPygame(), graphics=Graphics.create_null())
+        return Preview(
+            pygame=NullPygame(),
+            graphics=Graphics.create_null(),
+            renderer=VideoRenderer.create_null()
+        )
 
-    def __init__(self, pygame, graphics):
+    def __init__(self, pygame, graphics, renderer):
         self.pygame = pygame
         self.graphics = graphics
+        self.renderer = renderer
 
     def run(self, animation):
         self.pygame.init()
