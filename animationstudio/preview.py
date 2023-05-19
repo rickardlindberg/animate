@@ -107,7 +107,11 @@ class Preview:
                 animation.update(elapsed_ms)
                 animation.draw(surface)
 
-                image = self.pygame.image.frombuffer(surface.get_data(), (400, 400), "BGRA")
+                image = self.pygame.image.frombuffer(
+                    surface.get_data(),
+                    animation.get_size(),
+                    "BGRA"
+                )
                 screen.blit(image, (0, 0))
 
                 self.pygame.display.flip()
