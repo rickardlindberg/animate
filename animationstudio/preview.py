@@ -109,9 +109,9 @@ class Preview:
                     elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                         raise ExitLoop(render=True)
                 screen.fill("gray")
-                x, y = screen_size.center(animation.get_size())
                 scale_factor = animation.get_size().scale_factor(screen_size)
                 preview_size = animation.get_size().scale(scale_factor)
+                x, y = screen_size.center(preview_size)
                 w, h = preview_size
                 self.pygame.draw.rect(screen, "black", (x, y, w, h))
                 surface = self.graphics.create_surface(preview_size)
