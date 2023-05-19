@@ -109,7 +109,7 @@ class Preview:
                     elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                         raise ExitLoop(render=True)
                 screen.fill("gray")
-                scale_factor = animation.get_size().scale_factor(screen_size.shrink(0.1))
+                scale_factor = animation.get_size().scale_factor(screen_size.scale(0.1))
                 preview_size = animation.get_size().scale(scale_factor)
                 x, y = screen_size.center(preview_size)
                 w, h = preview_size

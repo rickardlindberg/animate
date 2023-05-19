@@ -31,15 +31,5 @@ class Size(namedtuple("Size", "width,height")):
             height=int(self.height*factor)
         )
 
-    def shrink(self, amount):
-        """
-        >>> Size(100, 100).shrink(10)
-        Size(width=90, height=90)
-        """
-        return Size(
-            width=self.width-amount,
-            height=self.height-amount
-        )
-
 class Point(namedtuple("Pint", "x,y")):
     pass
