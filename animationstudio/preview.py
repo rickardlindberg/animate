@@ -86,7 +86,7 @@ class Preview:
     def run(self, animation):
         result = self.loop(animation)
         if result.render:
-            self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
+            self.renderer.render(animation, destination="/tmp/animation.mp4")
 
     def loop(self, animation):
         self.pygame.init()

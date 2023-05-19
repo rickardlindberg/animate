@@ -26,7 +26,8 @@ class VideoRenderer:
         self.process = process
         self.graphics = graphics
 
-    def render(self, animation, destination, fps):
+    def render(self, animation, destination):
+        fps = animation.get_fps()
         animation.reset()
         for frame_index in range(int(animation.get_duration_in_ms()/1000*fps)):
             frame = f"/tmp/frame{frame_index+1:04}.png"
