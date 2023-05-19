@@ -101,7 +101,7 @@ class CairoSurfaceWrapper:
 
     def text(self, text, position, pointspec="center", **kwargs):
         with self.ctx() as ctx:
-            ctx.set_font_size(100)
+            ctx.set_font_size(250)
             ctx.translate(position.x, position.y)
             self.apply_generic_attributes(ctx, **kwargs)
             extents = ctx.text_extents(text)
@@ -119,7 +119,7 @@ class CairoSurfaceWrapper:
         ctx.fill_preserve()
         if "stroke_color" in kwargs:
             ctx.set_source_rgb(*kwargs["stroke_color"])
-        ctx.set_line_width(30)
+        ctx.set_line_width(15)
         ctx.stroke()
 
     def apply_generic_attributes(self, ctx, **kwargs):
