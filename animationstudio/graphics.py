@@ -96,13 +96,13 @@ class CairoSurfaceWrapper:
         with self.ctx() as ctx:
             ctx.set_source_rgb(1, 1, 1)
             ctx.set_font_size(500)
-            self.apply_transformations(ctx, **kwargs)
             extents = ctx.text_extents(text)
             position = position.adjust(
                 Size(width=extents.width, height=extents.height),
                 pointspec
             ).move(dy=extents.height)
             ctx.move_to(position.x, position.y)
+            self.apply_transformations(ctx, **kwargs)
             ctx.show_text(text)
 
     def apply_transformations(self, ctx, **kwargs):
