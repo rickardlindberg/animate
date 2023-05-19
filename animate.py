@@ -82,7 +82,23 @@ class Graphics:
 
     @staticmethod
     def create_null():
-        return Graphics(cairo)
+        class NullCairoModule:
+            FORMAT_ARGB32 = object()
+            class ImageSurface:
+                def __init__(self, format_, width, height):
+                    pass
+                def write_to_png(self, destination):
+                    pass
+            class Context:
+                def __init__(self, surface):
+                    pass
+                def rectangle(self, x, y, width, heigt):
+                    pass
+                def set_source_rgb(self, r, g, b):
+                    pass
+                def fill(self):
+                    pass
+        return Graphics(NullCairoModule())
 
     def __init__(self, cairo):
         self.cairo = cairo
@@ -101,7 +117,7 @@ class CairoSurfaceWrapper:
 
     def __init__(self, cairo, width, height):
         self.cairo = cairo
-        self.surface = self.cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+        self.surface = self.cairo.ImageSurface(self.cairo.FORMAT_ARGB32, width, height)
 
     def fill_rect(self, x, y, width, height, color):
         print("FillRect =>")
