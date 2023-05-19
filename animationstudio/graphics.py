@@ -106,7 +106,8 @@ class CairoSurfaceWrapper:
                 pointspec
             ).move(dy=extents.height)
             ctx.translate(position.x, position.y)
-            ctx.show_text(text)
+            ctx.text_path(text)
+            ctx.fill()
 
     def apply_generic_attributes(self, ctx, **kwargs):
         if "scale" in kwargs:
