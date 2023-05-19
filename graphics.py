@@ -15,6 +15,8 @@ class Graphics:
                     pass
                 def write_to_png(self, destination):
                     pass
+                def get_data(self):
+                    pass
             class Context:
                 def __init__(self, surface):
                     pass
@@ -56,3 +58,6 @@ class CairoSurfaceWrapper:
     def write_to_file(self, destination):
         print(f"Write {destination}")
         self.surface.write_to_png(destination)
+
+    def get_data(self):
+        return self.surface.get_data()

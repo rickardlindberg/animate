@@ -25,6 +25,8 @@ class Preview:
         class NullScreen:
             def fill(self, color):
                 pass
+            def blit(self, surface, position):
+                pass
         class NullDisplay:
             def set_mode(self, size):
                 return NullScreen()
@@ -37,10 +39,14 @@ class Preview:
         class NullEvent:
             def get(self):
                 return [pygame.event.Event(pygame.QUIT)]
+        class NullImage:
+            def frombuffer(self, buffer, size, mode):
+                pass
         class NullPygame:
             display = NullDisplay()
             time = NullTime()
             event = NullEvent()
+            image = NullImage()
             def init(self):
                 pass
             def quit(self):
@@ -67,6 +73,10 @@ class Preview:
             surface = self.graphics.create_surface(400, 400)
             animation.update(elapsed_ms)
             animation.draw(surface)
+
+            image = self.pygame.image.frombuffer(surface.get_data(), (400, 400), "ARGB")
+            screen.blit(image, (0, 0))
+
             self.pygame.display.flip()
             elapsed_ms = clock.tick(60)
             animation_elapsed_ms += elapsed_ms
