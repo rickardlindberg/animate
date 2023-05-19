@@ -4,7 +4,17 @@ class ExampleAnimation(Animation):
 
     """
     >>> ExampleAnimation().dry_run() # doctest: +ELLIPSIS
-    FillRect ...
+    FillRect =>
+      x: 10.0
+    FillRect =>
+      x: 10
+    Write /tmp/frame0001.png
+    ...
+    FillRect =>
+      x: 306.0
+    Write /tmp/frame0075.png
+    PROCESS =>
+      command: ['ffmpeg', '-framerate', '25', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
     """
 
     def get_duration_in_ms(self):
