@@ -61,7 +61,7 @@ class CairoSurfaceWrapper:
 
     """
     >>> s = CairoSurfaceWrapper(cairo, Size(width=400, height=400), 1)
-    >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
+    >>> s.fill_rect(0, 0, 10, 10, color=(0.5, 1, 0.3))
     FillRect =>
       x: 0
     """
@@ -85,20 +85,19 @@ class CairoSurfaceWrapper:
         finally:
             ctx.restore()
 
-    def fill_rect(self, x, y, width, height, color, **kwargs):
+    def fill_rect(self, x, y, width, height, **kwargs):
         print("FillRect =>")
         print(f"  x: {x}")
         with self.ctx() as ctx:
             ctx.rectangle(x, y, width, height)
-            ctx.set_source_rgb(*color)
-            self.apply_transformations(ctx, **kwargs)
+            self.apply_generic_attributes(ctx, **kwargs)
             ctx.fill()
 
     def text(self, text, position, pointspec="center", **kwargs):
         with self.ctx() as ctx:
             ctx.set_source_rgb(1, 1, 1)
             ctx.set_font_size(500)
-            self.apply_transformations(ctx, **kwargs)
+            self.apply_generic_attributes(ctx, **kwargs)
             extents = ctx.text_extents(text)
             position = position.adjust(
                 Size(width=extents.width, height=extents.height),
@@ -107,9 +106,11 @@ class CairoSurfaceWrapper:
             ctx.translate(position.x, position.y)
             ctx.show_text(text)
 
-    def apply_transformations(self, ctx, **kwargs):
+    def apply_generic_attributes(self, ctx, **kwargs):
         if "scale" in kwargs:
             ctx.scale(kwargs["scale"], kwargs["scale"])
+        if "color" in kwargs:
+            ctx.set_source_rgb(*kwargs["color"])
 
     def write_to_file(self, destination):
         print(f"Write {destination}")

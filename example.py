@@ -30,7 +30,7 @@ class ExampleAnimation(Animation):
         self.x += elapsed_ms*0.1
 
     def draw(self, surface):
-        surface.fill_rect(self.x, 10, 10, 10, (0.1, 0.5, 0.8))
+        surface.fill_rect(self.x, 10, 10, 10, color=(0.1, 0.5, 0.8))
 
 if __name__ == "__main__":
     run(ExampleAnimation())
