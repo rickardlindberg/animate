@@ -22,7 +22,7 @@ class Graphics:
                     pass
                 def set_source_rgb(self, r, g, b):
                     pass
-                def fill(self):
+                def fill_preserve(self):
                     pass
                 def stroke(self):
                     pass
@@ -95,9 +95,9 @@ class CairoSurfaceWrapper:
         print("FillRect =>")
         print(f"  x: {x}")
         with self.ctx() as ctx:
-            ctx.rectangle(x, y, width, height)
             self.apply_generic_attributes(ctx, **kwargs)
-            ctx.fill()
+            ctx.rectangle(x, y, width, height)
+            self.fill_stroke(ctx, **kwargs)
 
     def text(self, text, position, pointspec="center", **kwargs):
         with self.ctx() as ctx:
@@ -112,7 +112,7 @@ class CairoSurfaceWrapper:
             ctx.translate(position.x, position.y)
             ctx.text_path(text)
 
-    def fill_stroke(ctx, **kwargs):
+    def fill_stroke(self, ctx, **kwargs):
         if "color" in kwargs:
             ctx.set_source_rgb(*kwargs["color"])
         ctx.fill_preserve()
