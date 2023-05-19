@@ -1,6 +1,6 @@
-import animationstudio
+from animationstudio import *
 
-class ExampleAnimation:
+class ExampleAnimation(Animation):
 
     """
     >>> ExampleAnimation().dry_run()

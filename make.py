@@ -19,6 +19,7 @@ if __name__ == "__main__":
     if command == ["build"]:
         suite = unittest.TestSuite()
         for module in [
+            "example",
             "animationstudio",
             "animationstudio.events",
             "animationstudio.graphics",
