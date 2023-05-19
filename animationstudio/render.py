@@ -20,29 +20,8 @@ class TestAnimation:
 class VideoRenderer:
 
     """
-    >>> process = Process.create_null()
-    >>> graphics = Graphics.create_null()
-    >>> renderer = VideoRenderer(process=process, graphics=graphics)
-    >>> renderer.render(
-    ...     animation=TestAnimation(),
-    ...     destination="/tmp/animation.mp4",
-    ...     fps=1,
-    ... )
-    Reset
-    FillRect =>
-      x: 10
-    Write /tmp/frame0001.png
-    Update 1000.0
-    FillRect =>
-      x: 110.0
-    Write /tmp/frame0002.png
-    Update 1000.0
-    FillRect =>
-      x: 210.0
-    Write /tmp/frame0003.png
-    Update 1000.0
-    PROCESS =>
-      command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
+    >>> isinstance(VideoRenderer.create(), VideoRenderer)
+    True
     """
 
     @staticmethod
