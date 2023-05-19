@@ -30,6 +30,12 @@ class Graphics:
                     pass
                 def fill(self):
                     pass
+                def save(self):
+                    pass
+                def restore(self):
+                    pass
+                def scale(self, x_factor, y_factor):
+                    pass
         return Graphics(NullCairoModule())
 
     def __init__(self, cairo):
@@ -54,11 +60,17 @@ class CairoSurfaceWrapper:
             size.width,
             size.height
         )
+        self.scale_factor = scale_factor
 
     @contextlib.contextmanager
     def ctx(self):
         ctx = self.cairo.Context(self.surface)
-        yield ctx
+        ctx.save()
+        try:
+            ctx.scale(self.scale_factor, self.scale_factor)
+            yield ctx
+        finally:
+            ctx.restore()
 
     def fill_rect(self, x, y, width, height, color):
         print("FillRect =>")
