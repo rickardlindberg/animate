@@ -28,6 +28,12 @@ class VideoRenderer:
       command: ['ffmpeg', '-framerate', '1', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
     """
 
+    @staticmethod
+    def create():
+        return VideoRenderer(
+            process=Process.create()
+        )
+
     def __init__(self, process):
         self.process = process
 
