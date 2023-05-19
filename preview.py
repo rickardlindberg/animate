@@ -1,3 +1,5 @@
+from animations.test import TestAnimation
+
 class Preview:
 
     """
