@@ -25,6 +25,7 @@ if __name__ == "__main__":
             "process",
             "render",
             "preview",
+            "animationstudio",
         ]:
             suite.addTest(doctest.DocTestSuite(
                 importlib.import_module(module),
