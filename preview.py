@@ -81,5 +81,6 @@ class Preview:
             elapsed_ms = clock.tick(60)
             animation_elapsed_ms += elapsed_ms
             if animation_elapsed_ms > animation.get_duration_in_ms():
+                animation_elapsed_ms = 0
                 animation.reset()
         self.pygame.quit()
