@@ -10,7 +10,7 @@ class Preview:
     I run and quit:
 
     >>> preview = Preview.create_null(
-    ...     events=[pygame.event.Event(pygame.QUIT)]
+    ...     events=[None, pygame.event.Event(pygame.QUIT)]
     ... ).run(Animation())
 
     I kick off rendering if 'r' is pressed:
@@ -55,7 +55,11 @@ class Preview:
                     return int(1000/fps)
         class NullEvent:
             def get(self):
-                return [events.pop(0)]
+                event = events.pop(0)
+                if event:
+                    return [event]
+                else:
+                    return []
         class NullImage:
             def frombuffer(self, buffer, size, mode):
                 pass
