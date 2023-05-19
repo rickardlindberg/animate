@@ -5,7 +5,7 @@ import pygame
 class Preview:
 
     """
-    >>> Preview.create().run(TestAnimation())
+    >>> Preview.create_null().run(TestAnimation())
 
     >>> isinstance(Preview.create(), Preview)
     True
@@ -17,6 +17,29 @@ class Preview:
 
     @staticmethod
     def create_null():
+        class NullScreen:
+            def fill(self, color):
+                pass
+        class NullDisplay:
+            def set_mode(self, size):
+                return NullScreen()
+            def flip(self):
+                pass
+        class NullTime:
+            class Clock:
+                def tick(self, fps):
+                    pass
+        class NullEvent:
+            def get(self):
+                return [pygame.event.Event(pygame.QUIT)]
+        class NullPygame:
+            def init(self):
+                pass
+            def quit(self):
+                pass
+            display = NullDisplay()
+            time = NullTime()
+            event = NullEvent()
         return Preview(pygame=NullPygame())
 
     def __init__(self, pygame):
@@ -29,7 +52,7 @@ class Preview:
         running = True
         while running:
             for event in self.pygame.event.get():
-                if event.type == self.pygame.QUIT:
+                if event.type == pygame.QUIT:
                     running = False
             screen.fill("purple")
             self.pygame.display.flip()
