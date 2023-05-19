@@ -88,7 +88,7 @@ class CairoSurfaceWrapper:
             ctx.set_source_rgb(*color)
             ctx.fill()
 
-    def text(self, text, position):
+    def text(self, text, position, pointspec="center"):
         with self.ctx() as ctx:
             ctx.set_source_rgb(1, 1, 1)
             ctx.set_font_size(500)
