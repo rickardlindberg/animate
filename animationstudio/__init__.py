@@ -1,5 +1,7 @@
 from animationstudio.preview import Preview
 
+__all___ = ["run"]
+
 class Animation:
 
     def dry_run(self):
