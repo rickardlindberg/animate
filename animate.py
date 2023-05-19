@@ -1,6 +1,6 @@
 import animationstudio
 
-class TestAnimation:
+class ExampleAnimation:
 
     def get_duration_in_ms(self):
         return 3000
@@ -15,4 +15,4 @@ class TestAnimation:
         surface.fill_rect(self.x, 10, 10, 10, (0.1, 0.5, 0.8))
 
 if __name__ == "__main__":
-    animationstudio.run(TestAnimation())
+    animationstudio.run(ExampleAnimation())
