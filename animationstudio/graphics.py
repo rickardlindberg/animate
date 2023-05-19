@@ -14,14 +14,7 @@ class Graphics:
     def create_null():
         class NullCairoModule:
             FORMAT_ARGB32 = object()
-            class ImageSurface:
-                def __init__(self, format_, width, height):
-                    pass
-                def write_to_png(self, destination):
-                    pass
-                def get_data(self):
-                    pass
-            class Context:
+            class NullContext:
                 def __init__(self, surface):
                     pass
                 def rectangle(self, x, y, width, heigt):
@@ -36,6 +29,14 @@ class Graphics:
                     pass
                 def scale(self, x_factor, y_factor):
                     pass
+            class ImageSurface:
+                def __init__(self, format_, width, height):
+                    pass
+                def write_to_png(self, destination):
+                    pass
+                def get_data(self):
+                    pass
+            Context = NullContext
         return Graphics(NullCairoModule())
 
     def __init__(self, cairo):
