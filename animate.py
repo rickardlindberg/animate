@@ -85,12 +85,12 @@ class Graphics:
         return Graphics()
 
     def create_surface(self, width, height):
-        return Surface(width, height)
+        return CairoSurfaceWrapper(width, height)
 
-class Surface:
+class CairoSurfaceWrapper:
 
     """
-    >>> s = Surface(400, 400)
+    >>> s = CairoSurfaceWrapper(400, 400)
     >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
     FillRect =>
       x: 0
