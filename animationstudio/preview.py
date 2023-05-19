@@ -112,6 +112,7 @@ class Preview:
                 x, y = screen_size.center(animation.get_size())
                 w, h = animation.get_size()
                 self.pygame.draw.rect(screen, "black", (x, y, w, h))
+                scale_factor = animation.get_size().scale_factor(screen_size)
                 surface = self.graphics.create_surface(animation.get_size())
                 animation.update(elapsed_ms)
                 animation.draw(surface)
