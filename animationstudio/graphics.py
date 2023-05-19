@@ -109,12 +109,12 @@ class CairoSurfaceWrapper:
             ctx.show_text(text)
 
     def apply_generic_attributes(self, ctx, **kwargs):
-        if "rotation" in kwargs:
-            ctx.rotate(kwargs["rotation"])
         if "scale" in kwargs:
             ctx.scale(kwargs["scale"], kwargs["scale"])
         if "color" in kwargs:
             ctx.set_source_rgb(*kwargs["color"])
+        if "rotation" in kwargs:
+            ctx.rotate(kwargs["rotation"])
 
     def write_to_file(self, destination):
         print(f"Write {destination}")
