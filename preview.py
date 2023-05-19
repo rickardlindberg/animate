@@ -1,2 +1,4 @@
 class Preview:
-    pass
+
+    def run(self, animation):
+        pass
