@@ -31,6 +31,8 @@ class Graphics:
                     pass
                 def move_to(self, x, y):
                     pass
+                def show_text(self, text):
+                    pass
             Context = NullContext
             class NullImageSurface:
                 def __init__(self, format_, width, height):
