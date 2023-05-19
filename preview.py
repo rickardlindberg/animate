@@ -1,4 +1,5 @@
 from animations.test import TestAnimation
+from graphics import Graphics
 
 import pygame
 
@@ -13,7 +14,7 @@ class Preview:
 
     @staticmethod
     def create():
-        return Preview(pygame=pygame)
+        return Preview(pygame=pygame, graphics=Graphics.create())
 
     @staticmethod
     def create_null():
@@ -40,10 +41,11 @@ class Preview:
                 pass
             def quit(self):
                 pass
-        return Preview(pygame=NullPygame())
+        return Preview(pygame=NullPygame(), graphics=Graphics.create_null())
 
-    def __init__(self, pygame):
+    def __init__(self, pygame, graphics):
         self.pygame = pygame
+        self.graphics = graphics
 
     def run(self, animation):
         self.pygame.init()
