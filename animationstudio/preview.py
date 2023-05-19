@@ -84,6 +84,9 @@ class Preview:
         self.renderer = renderer
 
     def run(self, animation):
+        self.loop(animation)
+
+    def loop(self, animation):
         self.pygame.init()
         screen = self.pygame.display.set_mode((1280, 720))
         clock = self.pygame.time.Clock()
