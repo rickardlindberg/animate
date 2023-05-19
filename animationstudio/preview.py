@@ -106,14 +106,12 @@ class Preview:
                 surface = self.graphics.create_surface(animation.get_size())
                 animation.update(elapsed_ms)
                 animation.draw(surface)
-
                 image = self.pygame.image.frombuffer(
                     surface.get_data(),
                     animation.get_size(),
                     "BGRA"
                 )
                 screen.blit(image, (0, 0))
-
                 self.pygame.display.flip()
                 elapsed_ms = clock.tick(60)
                 animation_elapsed_ms += elapsed_ms
