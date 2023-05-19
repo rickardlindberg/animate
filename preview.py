@@ -6,6 +6,9 @@ class Preview:
 
     """
     >>> Preview.create().run(TestAnimation())
+
+    >>> isinstance(Preview.create(), Preview)
+    True
     """
 
     @staticmethod
