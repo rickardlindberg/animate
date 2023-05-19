@@ -1,4 +1,5 @@
 from graphics import Graphics
+from process import Process
 
 class VideoRenderer:
 
@@ -72,27 +73,6 @@ class TestAnimation:
 
     def draw(self, surface):
         surface.fill_rect(self.x, 10, 10, 10, (0.1, 0.5, 0.8))
-
-class Process:
-
-    @staticmethod
-    def create():
-        return Process(subprocess)
-
-    @staticmethod
-    def create_null():
-        class NullSubprocess:
-            def run(self, command):
-                pass
-        return Process(NullSubprocess())
-
-    def __init__(self, subprocess):
-        self.subprocess = subprocess
-
-    def run(self, command):
-        print("PROCESS =>")
-        print(f"  command: {command}")
-        self.subprocess.run(command)
 
 if __name__ == "__main__":
     VideoRenderer.create().render(
