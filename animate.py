@@ -117,8 +117,7 @@ class Process:
         self.subprocess.run(command)
 
 if __name__ == "__main__":
-    renderer = VideoRenderer(process=Process.create())
-    renderer.render(
+    VideoRenderer.create().render(
         animation=TestAnimation(),
         destination="/tmp/animation.mp4",
         fps=25,
