@@ -1,3 +1,4 @@
+from animationstudio.geometry import Point
 from animationstudio.geometry import Size
 
 import cairo
@@ -107,3 +108,10 @@ class CairoSurfaceWrapper:
 
     def get_data(self):
         return self.surface.get_data()
+
+def adjust_position(position, size, pointspec):
+    """
+    >>> adjust_position(Point(0, 0), Point(100, 100), "topleft")
+    Point(x=0, y=0)
+    """
+    return position
