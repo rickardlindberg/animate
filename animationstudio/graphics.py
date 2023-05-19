@@ -33,19 +33,19 @@ class Graphics:
     def __init__(self, cairo):
         self.cairo = cairo
 
-    def create_surface(self, size):
-        return CairoSurfaceWrapper(self.cairo, size)
+    def create_surface(self, size, scale_factor=1):
+        return CairoSurfaceWrapper(self.cairo, size, scale_factor)
 
 class CairoSurfaceWrapper:
 
     """
-    >>> s = CairoSurfaceWrapper(cairo, Size(width=400, height=400))
+    >>> s = CairoSurfaceWrapper(cairo, Size(width=400, height=400), 1)
     >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
     FillRect =>
       x: 0
     """
 
-    def __init__(self, cairo, size):
+    def __init__(self, cairo, size, scale_factor):
         self.cairo = cairo
         self.surface = self.cairo.ImageSurface(
             self.cairo.FORMAT_ARGB32,
