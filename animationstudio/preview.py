@@ -1,4 +1,5 @@
 from animationstudio.animation import Animation
+from animationstudio.geometry import Size
 from animationstudio.graphics import Graphics
 from animationstudio.render import VideoRenderer
 
@@ -90,7 +91,8 @@ class Preview:
 
     def loop(self, animation):
         self.pygame.init()
-        screen = self.pygame.display.set_mode(animation.get_size())
+        screen_size = Size(width=1280, height=720)
+        screen = self.pygame.display.set_mode(screen_size)
         clock = self.pygame.time.Clock()
         animation.reset()
         elapsed_ms = 0
