@@ -119,7 +119,7 @@ class Preview:
                 animation.draw(surface)
                 image = self.pygame.image.frombuffer(
                     surface.get_data(),
-                    animation.get_size(),
+                    preview_size,
                     "BGRA"
                 )
                 screen.blit(image, (x, y))
