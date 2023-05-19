@@ -1,4 +1,3 @@
-from animationstudio.examples import TestAnimation
 from animationstudio.graphics import Graphics
 
 import pygame
