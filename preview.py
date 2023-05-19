@@ -7,6 +7,9 @@ class Preview:
 
     """
     >>> Preview.create_null().run(TestAnimation())
+    Reset
+    FillRect =>
+      x: 10
 
     >>> isinstance(Preview.create(), Preview)
     True
@@ -52,11 +55,14 @@ class Preview:
         screen = self.pygame.display.set_mode((1280, 720))
         clock = self.pygame.time.Clock()
         running = True
+        animation.reset()
         while running:
             for event in self.pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
             screen.fill("purple")
+            surface = self.graphics.create_surface(400, 400)
+            animation.draw(surface)
             self.pygame.display.flip()
             clock.tick(60)
         self.pygame.quit()
