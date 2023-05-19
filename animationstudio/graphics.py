@@ -93,15 +93,19 @@ class CairoSurfaceWrapper:
 
     def text(self, text, position, pointspec="center"):
         with self.ctx() as ctx:
-            ctx.set_source_rgb(1, 1, 1)
-            ctx.set_font_size(500)
-            extents = ctx.text_extents(text)
-            position = position.adjust(
-                Size(width=extents.width, height=extents.height),
-                pointspec
-            ).move(dy=extents.height)
-            ctx.move_to(position.x, position.y)
-            ctx.show_text(text)
+            ctx.save()
+            try:
+                ctx.set_source_rgb(1, 1, 1)
+                ctx.set_font_size(500)
+                extents = ctx.text_extents(text)
+                position = position.adjust(
+                    Size(width=extents.width, height=extents.height),
+                    pointspec
+                ).move(dy=extents.height)
+                ctx.move_to(position.x, position.y)
+                ctx.show_text(text)
+            finally:
+                ctx.restore()
 
     def write_to_file(self, destination):
         print(f"Write {destination}")
