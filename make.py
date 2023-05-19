@@ -33,6 +33,6 @@ if __name__ == "__main__":
         if not unittest.TextTestRunner().run(suite).wasSuccessful():
             sys.exit(1)
     elif command == ["rundev"]:
-        sys.exit(subprocess.run([sys.executable, "animate.py"]).returncode)
+        sys.exit(subprocess.run([sys.executable, "example.py"]).returncode)
     else:
         sys.exit("\n".join(usage()))
