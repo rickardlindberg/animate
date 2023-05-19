@@ -20,4 +20,15 @@ class Preview:
         self.pygame = pygame
 
     def run(self, animation):
-        pass
+        self.pygame.init()
+        screen = self.pygame.display.set_mode((1280, 720))
+        clock = self.pygame.time.Clock()
+        running = True
+        while running:
+            for event in self.pygame.event.get():
+                if event.type == self.pygame.QUIT:
+                    running = False
+            screen.fill("purple")
+            self.pygame.display.flip()
+            clock.tick(60)
+        self.pygame.quit()
