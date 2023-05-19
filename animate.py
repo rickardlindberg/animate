@@ -1,7 +1,5 @@
 from animations.test import TestAnimation
-from preview import Preview
+import animationstudio
 
 if __name__ == "__main__":
-    Preview.create().run(
-        animation=TestAnimation(),
-    )
+    animationstudio.run(TestAnimation())
