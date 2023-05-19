@@ -53,6 +53,9 @@ class CairoSurfaceWrapper:
             size.height
         )
 
+    def with_ctx(self):
+        yield ctx
+
     def fill_rect(self, x, y, width, height, color):
         print("FillRect =>")
         print(f"  x: {x}")
