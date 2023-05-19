@@ -111,6 +111,7 @@ class CairoSurfaceWrapper:
             ).move(dy=extents.height)
             ctx.translate(position.x, position.y)
             ctx.text_path(text)
+            self.fill_stroke(ctx, **kwargs)
 
     def fill_stroke(self, ctx, **kwargs):
         if "color" in kwargs:
