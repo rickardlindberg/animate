@@ -95,7 +95,7 @@ class CairoSurfaceWrapper:
         with self.ctx() as ctx:
             ctx.set_source_rgb(1, 1, 1)
             ctx.set_font_size(500)
-            extents = ctx.text_extents()
+            extents = ctx.text_extents(text)
             position = adjust_position(
                 position,
                 Size(width=extends.width, height=extends.height),
