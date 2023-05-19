@@ -21,5 +21,15 @@ class Size(namedtuple("Size", "width,height")):
         height_scale_factor = size.height / self.height
         return min(width_scale_factor, height_scale_factor)
 
+    def scale(self, factor):
+        """
+        >>> Size(100, 100).scale(2)
+        Size(width=200, height=200)
+        """
+        return Size(
+            width=self.width*factor,
+            height=self.height*factor
+        )
+
 class Point(namedtuple("Pint", "x,y")):
     pass
