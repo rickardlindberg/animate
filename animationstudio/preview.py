@@ -10,7 +10,7 @@ class Preview:
     I run and quit:
 
     >>> preview = Preview.create_null(
-    ...     events=[]
+    ...     events=[pygame.event.Event(pygame.QUIT)]
     ... ).run(Animation())
 
     I kick off rendering if 'r' is pressed:
@@ -38,7 +38,7 @@ class Preview:
         )
 
     @staticmethod
-    def create_null(events=[]):
+    def create_null(events=[pygame.event.Event(pygame.QUIT)]):
         class NullScreen:
             def fill(self, color):
                 pass
@@ -55,9 +55,7 @@ class Preview:
                     return int(1000/fps)
         class NullEvent:
             def get(self):
-                if events:
-                    return [events.pop(0)]
-                return [pygame.event.Event(pygame.QUIT)]
+                return [events.pop(0)]
         class NullImage:
             def frombuffer(self, buffer, size, mode):
                 pass
@@ -95,7 +93,7 @@ class Preview:
                     running = False
                 elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                     self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
-                    runnint = False
+                    running = False
             screen.fill("black")
             surface = self.graphics.create_surface(400, 400)
             animation.update(elapsed_ms)
