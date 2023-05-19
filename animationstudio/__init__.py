@@ -2,6 +2,7 @@
 """
 
 from animationstudio.animation import Animation
+from animationstudio.geometry import Point
 from animationstudio.geometry import Size
 from animationstudio.preview import Preview
 
@@ -9,6 +10,7 @@ __all__ = [
     "run",
     "Animation",
     "Size",
+    "Point",
     "SIZE_4K",
     "SIZE_HD",
     "SIZE_720",
