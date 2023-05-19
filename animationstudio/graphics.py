@@ -111,7 +111,13 @@ class CairoSurfaceWrapper:
 
 def adjust_position(position, size, pointspec):
     """
-    >>> adjust_position(Point(0, 0), Point(100, 100), "topleft")
+    >>> adjust_position(Point(0, 0), Size(100, 100), "topleft")
     Point(x=0, y=0)
+
+    >>> adjust_position(Point(0, 0), Size(100, 100), "center")
+    Point(x=-50, y=-50)
     """
-    return position
+    if pointspec == "center":
+        return position.move(dx=-size.width//2, dy=-size.height//2)
+    else:
+        return position

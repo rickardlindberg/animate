@@ -32,4 +32,10 @@ class Size(namedtuple("Size", "width,height")):
         )
 
 class Point(namedtuple("Pint", "x,y")):
-    pass
+
+    def move(self, dx=0, dy=0):
+        """
+        >>> Point(0, 0).move(1, 2)
+        Point(x=1, y=2)
+        """
+        return Point(x=self.x+dx, y=self.y+dy)
