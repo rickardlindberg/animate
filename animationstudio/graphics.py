@@ -80,6 +80,11 @@ class CairoSurfaceWrapper:
             ctx.set_source_rgb(*color)
             ctx.fill()
 
+    def text(self, text, position):
+        with self.ctx() as ctx:
+            ctx.move_to(position.x, position.y)
+            ctx.show_text(text)
+
     def write_to_file(self, destination):
         print(f"Write {destination}")
         self.surface.write_to_png(destination)
