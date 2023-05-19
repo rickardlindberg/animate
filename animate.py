@@ -1,7 +1,5 @@
 from graphics import Graphics
 
-import subprocess
-
 class VideoRenderer:
 
     """
