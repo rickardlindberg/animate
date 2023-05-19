@@ -84,7 +84,7 @@ class Preview:
         self.renderer = renderer
 
     def run(self, animation):
-        self.loop(animation)
+        result = self.loop(animation)
 
     def loop(self, animation):
         self.pygame.init()
