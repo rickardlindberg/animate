@@ -105,7 +105,7 @@ class CairoSurfaceWrapper:
                 pointspec
             ).move(dy=extents.height)
             ctx.move_to(position.x, position.y)
-            extents = ctx.text_extents(text)
+            self.apply_transformations(ctx, **kwargs)
             ctx.show_text(text)
 
     def apply_transformations(self, ctx, **kwargs):
