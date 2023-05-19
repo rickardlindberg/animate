@@ -19,12 +19,14 @@ if __name__ == "__main__":
     if command == ["build"]:
         suite = unittest.TestSuite()
         for module in [
-            "animate",
-            "events",
-            "graphics",
-            "process",
-            "render",
-            "preview",
+            "example",
+            "animationstudio",
+            "animationstudio.events",
+            "animationstudio.graphics",
+            "animationstudio.process",
+            "animationstudio.render",
+            "animationstudio.preview",
+            "animationstudio.geometry",
         ]:
             suite.addTest(doctest.DocTestSuite(
                 importlib.import_module(module),
@@ -33,6 +35,6 @@ if __name__ == "__main__":
         if not unittest.TextTestRunner().run(suite).wasSuccessful():
             sys.exit(1)
     elif command == ["rundev"]:
-        sys.exit(subprocess.run([sys.executable, "animate.py"]).returncode)
+        sys.exit(subprocess.run([sys.executable, "example.py"]).returncode)
     else:
         sys.exit("\n".join(usage()))
