@@ -116,8 +116,15 @@ def adjust_position(position, size, pointspec):
 
     >>> adjust_position(Point(0, 0), Size(100, 100), "center")
     Point(x=-50, y=-50)
+
+    >>> adjust_position(Point(0, 0), Size(100, 100), "unknown spec")
+    Traceback (most recent call last):
+      ...
+    ValueError: Unknown pointspec 'unknown spec'.
     """
     if pointspec == "center":
         return position.move(dx=-size.width//2, dy=-size.height//2)
-    else:
+    elif pointspec == "topleft":
         return position
+    else:
+        raise ValueError(f"Unknown pointspec {pointspec!r}.")
