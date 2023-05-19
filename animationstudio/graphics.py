@@ -98,7 +98,7 @@ class CairoSurfaceWrapper:
             extents = ctx.text_extents(text)
             position = adjust_position(
                 position,
-                Size(width=extends.width, height=extends.height),
+                Size(width=extents.width, height=extents.height),
                 pointspec
             )
             ctx.move_to(position.x, position.y)
