@@ -18,7 +18,7 @@ class ExampleAnimation(Animation):
     """
 
     def get_size(self):
-        return Size(width=400, height=400)
+        return Size(width=1920, height=1080)
 
     def get_duration_in_ms(self):
         return 3000
