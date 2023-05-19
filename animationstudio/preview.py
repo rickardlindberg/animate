@@ -94,7 +94,7 @@ class Preview:
                         running = False
                     elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                         self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
-                        running = False
+                        raise ExitLoop()
                 screen.fill("black")
                 surface = self.graphics.create_surface(400, 400)
                 animation.update(elapsed_ms)
