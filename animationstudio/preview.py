@@ -120,7 +120,7 @@ class Preview:
                     animation.get_size(),
                     "BGRA"
                 )
-                screen.blit(image, (0, 0))
+                screen.blit(image, (x, y))
                 self.pygame.display.flip()
                 elapsed_ms = clock.tick(60)
                 animation_elapsed_ms += elapsed_ms
