@@ -2,6 +2,8 @@ from animationstudio.geometry import Size
 
 import cairo
 
+import contextlib
+
 class Graphics:
 
     @staticmethod
@@ -53,6 +55,7 @@ class CairoSurfaceWrapper:
             size.height
         )
 
+    @contextlib.contextmanager
     def with_ctx(self):
         yield ctx
 
