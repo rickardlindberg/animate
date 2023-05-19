@@ -64,11 +64,15 @@ class Preview:
         class NullImage:
             def frombuffer(self, buffer, size, mode):
                 pass
+        class NullDraw:
+            def rect(sefl, screen, color, rect):
+                pass
         class NullPygame:
             display = NullDisplay()
             time = NullTime()
             event = NullEvent()
             image = NullImage()
+            draw = NullDraw()
             def init(self):
                 pass
             def quit(self):
@@ -105,6 +109,8 @@ class Preview:
                     elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                         raise ExitLoop(render=True)
                 screen.fill("gray")
+                w, h = animation.get_size()
+                self.pygame.draw.rect(screen, "black", (0, 0, w, h))
                 surface = self.graphics.create_surface(animation.get_size())
                 animation.update(elapsed_ms)
                 animation.draw(surface)
