@@ -39,3 +39,25 @@ class Point(namedtuple("Pint", "x,y")):
         Point(x=1, y=2)
         """
         return Point(x=self.x+dx, y=self.y+dy)
+
+    def adjust(self, size, pointspec):
+        """
+        >>> p = Point(0, 0)
+
+        >>> p.adjust(Size(100, 100), "topleft")
+        Point(x=0, y=0)
+
+        >>> p.adjust(Size(100, 100), "center")
+        Point(x=-50, y=-50)
+
+        >>> p.adjust(Size(100, 100), "unknown spec")
+        Traceback (most recent call last):
+          ...
+        ValueError: Unknown pointspec 'unknown spec'.
+        """
+        if pointspec == "center":
+            return self.move(dx=-size.width//2, dy=-size.height//2)
+        elif pointspec == "topleft":
+            return self
+        else:
+            raise ValueError(f"Unknown pointspec {pointspec!r}.")
