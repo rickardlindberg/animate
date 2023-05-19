@@ -19,4 +19,4 @@ class ExampleAnimation(Animation):
         surface.fill_rect(self.x, 10, 10, 10, (0.1, 0.5, 0.8))
 
 if __name__ == "__main__":
-    animationstudio.run(ExampleAnimation())
+    run(ExampleAnimation())
