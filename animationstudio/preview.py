@@ -109,8 +109,9 @@ class Preview:
                     elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                         raise ExitLoop(render=True)
                 screen.fill("gray")
+                x, y = screen_size.center(animation.get_size())
                 w, h = animation.get_size()
-                self.pygame.draw.rect(screen, "black", (0, 0, w, h))
+                self.pygame.draw.rect(screen, "black", (x, y, w, h))
                 surface = self.graphics.create_surface(animation.get_size())
                 animation.update(elapsed_ms)
                 animation.draw(surface)
