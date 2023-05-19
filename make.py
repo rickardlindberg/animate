@@ -22,6 +22,7 @@ if __name__ == "__main__":
             "animate",
             "events",
             "graphics",
+            "process",
         ]:
             suite.addTest(doctest.DocTestSuite(
                 importlib.import_module(module),
