@@ -1,6 +1,6 @@
 from animationstudio.preview import Preview
 
-__all___ = ["run"]
+__all__ = ["run", "Animation"]
 
 class Animation:
 
