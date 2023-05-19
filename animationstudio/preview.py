@@ -109,3 +109,9 @@ class Preview:
                 animation_elapsed_ms = 0
                 animation.reset()
         self.pygame.quit()
+
+class ExitLoop(Exception):
+
+    def __init__(self, render=False):
+        Exception.__init__(self)
+        self.render = render
