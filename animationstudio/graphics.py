@@ -56,16 +56,17 @@ class CairoSurfaceWrapper:
         )
 
     @contextlib.contextmanager
-    def with_ctx(self):
+    def ctx(self):
+        ctx = self.cairo.Context(self.surface)
         yield ctx
 
     def fill_rect(self, x, y, width, height, color):
         print("FillRect =>")
         print(f"  x: {x}")
-        ctx = self.cairo.Context(self.surface)
-        ctx.rectangle(x, y, width, height)
-        ctx.set_source_rgb(*color)
-        ctx.fill()
+        with self.ctx() as ctx:
+            ctx.rectangle(x, y, width, height)
+            ctx.set_source_rgb(*color)
+            ctx.fill()
 
     def write_to_file(self, destination):
         print(f"Write {destination}")
