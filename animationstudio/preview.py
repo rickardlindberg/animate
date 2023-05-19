@@ -87,28 +87,32 @@ class Preview:
         animation.reset()
         elapsed_ms = 0
         animation_elapsed_ms = 0
-        while running:
-            for event in self.pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
-                    self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
-                    running = False
-            screen.fill("black")
-            surface = self.graphics.create_surface(400, 400)
-            animation.update(elapsed_ms)
-            animation.draw(surface)
+        try:
+            while running:
+                for event in self.pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        running = False
+                    elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
+                        self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
+                        running = False
+                screen.fill("black")
+                surface = self.graphics.create_surface(400, 400)
+                animation.update(elapsed_ms)
+                animation.draw(surface)
 
-            image = self.pygame.image.frombuffer(surface.get_data(), (400, 400), "BGRA")
-            screen.blit(image, (0, 0))
+                image = self.pygame.image.frombuffer(surface.get_data(), (400, 400), "BGRA")
+                screen.blit(image, (0, 0))
 
-            self.pygame.display.flip()
-            elapsed_ms = clock.tick(60)
-            animation_elapsed_ms += elapsed_ms
-            if animation_elapsed_ms > animation.get_duration_in_ms():
-                animation_elapsed_ms = 0
-                animation.reset()
-        self.pygame.quit()
+                self.pygame.display.flip()
+                elapsed_ms = clock.tick(60)
+                animation_elapsed_ms += elapsed_ms
+                if animation_elapsed_ms > animation.get_duration_in_ms():
+                    animation_elapsed_ms = 0
+                    animation.reset()
+        except ExitLoop as e:
+            pass
+        finally:
+            self.pygame.quit()
 
 class ExitLoop(Exception):
 
