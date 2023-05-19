@@ -85,24 +85,25 @@ class Graphics:
         return Graphics()
 
     def create_surface(self, width, height):
-        return CairoSurfaceWrapper(width, height)
+        return CairoSurfaceWrapper(cairo, width, height)
 
 class CairoSurfaceWrapper:
 
     """
-    >>> s = CairoSurfaceWrapper(400, 400)
+    >>> s = CairoSurfaceWrapper(cairo, 400, 400)
     >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
     FillRect =>
       x: 0
     """
 
-    def __init__(self, width, height):
-        self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
+    def __init__(self, cairo, width, height):
+        self.cairo = cairo
+        self.surface = self.cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
 
     def fill_rect(self, x, y, width, height, color):
         print("FillRect =>")
         print(f"  x: {x}")
-        ctx = cairo.Context(self.surface)
+        ctx = self.cairo.Context(self.surface)
         ctx.rectangle(x, y, width, height)
         ctx.set_source_rgb(*color)
         ctx.fill()
