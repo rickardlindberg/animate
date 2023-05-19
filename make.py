@@ -24,6 +24,7 @@ if __name__ == "__main__":
             "graphics",
             "process",
             "render",
+            "preview",
         ]:
             suite.addTest(doctest.DocTestSuite(
                 importlib.import_module(module),
