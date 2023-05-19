@@ -11,7 +11,11 @@ class Preview:
 
     >>> preview = Preview.create_null(
     ...     events=[pygame.event.Event(pygame.KEYDOWN, key=pygame.K_r)]
-    ... ).run(Animation())
+    ... ).run(Animation()) # doctest: +ELLIPSIS
+    Write /tmp/frame0001.png
+    ...
+    PROCESS =>
+      command: ['ffmpeg', '-framerate', '25', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
 
     I can create myself:
 
@@ -83,6 +87,8 @@ class Preview:
             for event in self.pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
+                    self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
             screen.fill("black")
             surface = self.graphics.create_surface(400, 400)
             animation.update(elapsed_ms)
