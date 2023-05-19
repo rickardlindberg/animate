@@ -104,7 +104,7 @@ class Preview:
                         raise ExitLoop()
                     elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                         raise ExitLoop(render=True)
-                screen.fill("black")
+                screen.fill("gray")
                 surface = self.graphics.create_surface(animation.get_size())
                 animation.update(elapsed_ms)
                 animation.draw(surface)
