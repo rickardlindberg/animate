@@ -92,7 +92,7 @@ class Preview:
         elapsed_ms = 0
         animation_elapsed_ms = 0
         try:
-            while running:
+            while True:
                 for event in self.pygame.event.get():
                     if event.type == pygame.QUIT:
                         raise ExitLoop()
