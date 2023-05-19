@@ -88,7 +88,7 @@ class Graphics:
         self.cairo = cairo
 
     def create_surface(self, width, height):
-        return CairoSurfaceWrapper(cairo, width, height)
+        return CairoSurfaceWrapper(self.cairo, width, height)
 
 class CairoSurfaceWrapper:
 
