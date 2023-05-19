@@ -74,6 +74,14 @@ class TestAnimation:
 
 class Graphics:
 
+    @staticmethod
+    def create():
+        return Graphics()
+
+    @staticmethod
+    def create_null():
+        return Graphics()
+
     def create_surface(self, width, height):
         return Surface(width, height)
 
