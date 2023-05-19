@@ -24,6 +24,8 @@ class Graphics:
                     pass
                 def fill(self):
                     pass
+                def stroke(self):
+                    pass
                 def save(self):
                     pass
                 def restore(self):
