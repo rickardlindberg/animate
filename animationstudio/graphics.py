@@ -101,7 +101,7 @@ class CairoSurfaceWrapper:
 
     def text(self, text, position, pointspec="center", **kwargs):
         with self.ctx() as ctx:
-            ctx.set_font_size(250)
+            ctx.set_font_size(500)
             ctx.translate(position.x, position.y)
             self.apply_generic_attributes(ctx, **kwargs)
             extents = ctx.text_extents(text)
