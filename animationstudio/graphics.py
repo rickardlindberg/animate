@@ -36,7 +36,7 @@ class Graphics:
                     pass
                 def rotate(self, amount):
                     pass
-                def show_text(self, text):
+                def text_path(self, text):
                     pass
                 def set_font_size(self, size):
                     pass
