@@ -85,6 +85,8 @@ class Preview:
 
     def run(self, animation):
         result = self.loop(animation)
+        if result.render:
+            self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
 
     def loop(self, animation):
         self.pygame.init()
@@ -115,8 +117,7 @@ class Preview:
                     animation_elapsed_ms = 0
                     animation.reset()
         except ExitLoop as e:
-            if e.render:
-                self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
+            return e
         finally:
             self.pygame.quit()
 
