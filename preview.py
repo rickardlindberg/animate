@@ -33,13 +33,13 @@ class Preview:
             def get(self):
                 return [pygame.event.Event(pygame.QUIT)]
         class NullPygame:
+            display = NullDisplay()
+            time = NullTime()
+            event = NullEvent()
             def init(self):
                 pass
             def quit(self):
                 pass
-            display = NullDisplay()
-            time = NullTime()
-            event = NullEvent()
         return Preview(pygame=NullPygame())
 
     def __init__(self, pygame):
