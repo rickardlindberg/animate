@@ -80,13 +80,13 @@ class Graphics:
 class Surface:
 
     """
-    >>> s = Surface()
+    >>> s = Surface(400, 400)
     >>> s.fill_rect(0, 0, 10, 10, (0.5, 1, 0.3))
     FillRect =>
       x: 0
     """
 
-    def __init__(self, width=400, height=400):
+    def __init__(self, width, height):
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
 
     def fill_rect(self, x, y, width, height, color):
