@@ -8,8 +8,9 @@ class Preview:
     """
     >>> Preview.create_null().run(TestAnimation())
     Reset
+    Update 0
     FillRect =>
-      x: 10
+      x: 10.0
 
     >>> isinstance(Preview.create(), Preview)
     True
@@ -32,7 +33,7 @@ class Preview:
         class NullTime:
             class Clock:
                 def tick(self, fps):
-                    pass
+                    return int(1000/fps)
         class NullEvent:
             def get(self):
                 return [pygame.event.Event(pygame.QUIT)]
@@ -56,13 +57,19 @@ class Preview:
         clock = self.pygame.time.Clock()
         running = True
         animation.reset()
+        elapsed_ms = 0
+        animation_elapsed_ms = 0
         while running:
             for event in self.pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
             screen.fill("purple")
             surface = self.graphics.create_surface(400, 400)
+            animation.update(elapsed_ms)
             animation.draw(surface)
             self.pygame.display.flip()
-            clock.tick(60)
+            elapsed_ms = clock.tick(60)
+            animation_elapsed_ms += elapsed_ms
+            if animation_elapsed_ms > animation.get_duration_in_ms():
+                animation.reset()
         self.pygame.quit()
