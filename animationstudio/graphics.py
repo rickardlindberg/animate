@@ -114,7 +114,7 @@ class CairoSurfaceWrapper:
             ctx.fill()
             ctx.text_path(text)
             ctx.set_source_rgb(0.2, 1, 1)
-            ctx.set_line_width(3)
+            ctx.set_line_width(30)
             ctx.stroke()
 
     def apply_generic_attributes(self, ctx, **kwargs):
