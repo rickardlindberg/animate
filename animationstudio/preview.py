@@ -6,6 +6,14 @@ import pygame
 class Preview:
 
     """
+    I kick off rendering if 'r' is pressed:
+
+    >>> preview = Preview.create_null(
+    ...     events=[pygame.event.Event(pygame.KEYDOWN, key=pygame.K_r)]
+    ... )
+
+    I can create myself:
+
     >>> isinstance(Preview.create(), Preview)
     True
     """
@@ -19,7 +27,7 @@ class Preview:
         )
 
     @staticmethod
-    def create_null():
+    def create_null(events=[]):
         class NullScreen:
             def fill(self, color):
                 pass
@@ -36,6 +44,8 @@ class Preview:
                     return int(1000/fps)
         class NullEvent:
             def get(self):
+                if events:
+                    return [events.pop(0)]
                 return [pygame.event.Event(pygame.QUIT)]
         class NullImage:
             def frombuffer(self, buffer, size, mode):
