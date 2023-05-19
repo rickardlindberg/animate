@@ -1,5 +1,5 @@
-from animations.test import TestAnimation
-from graphics import Graphics
+from animationstudio.examples import TestAnimation
+from animationstudio.graphics import Graphics
 
 import pygame
 

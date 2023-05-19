@@ -19,13 +19,12 @@ if __name__ == "__main__":
     if command == ["build"]:
         suite = unittest.TestSuite()
         for module in [
-            "animate",
-            "events",
-            "graphics",
-            "process",
-            "render",
-            "preview",
             "animationstudio",
+            "animationstudio.events",
+            "animationstudio.graphics",
+            "animationstudio.process",
+            "animationstudio.render",
+            "animationstudio.preview",
         ]:
             suite.addTest(doctest.DocTestSuite(
                 importlib.import_module(module),

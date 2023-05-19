@@ -1,4 +1,4 @@
-from preview import Preview
+from animationstudio.preview import Preview
 
 def run(animation):
     Preview.create().run(animation=animation)
