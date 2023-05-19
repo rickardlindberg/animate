@@ -7,6 +7,12 @@ import pygame
 class Preview:
 
     """
+    I run and quit:
+
+    >>> preview = Preview.create_null(
+    ...     events=[]
+    ... ).run(Animation())
+
     I kick off rendering if 'r' is pressed:
 
     >>> preview = Preview.create_null(
