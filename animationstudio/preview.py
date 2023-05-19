@@ -1,3 +1,4 @@
+from animationstudio.animation import Animation
 from animationstudio.graphics import Graphics
 from animationstudio.render import VideoRenderer
 
@@ -10,7 +11,7 @@ class Preview:
 
     >>> preview = Preview.create_null(
     ...     events=[pygame.event.Event(pygame.KEYDOWN, key=pygame.K_r)]
-    ... )
+    ... ).run(Animation())
 
     I can create myself:
 
