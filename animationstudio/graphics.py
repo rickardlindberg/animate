@@ -102,7 +102,7 @@ class CairoSurfaceWrapper:
                 Size(width=extents.width, height=extents.height),
                 pointspec
             ).move(dy=extents.height)
-            ctx.move_to(position.x, position.y)
+            ctx.translate(position.x, position.y)
             ctx.show_text(text)
 
     def apply_transformations(self, ctx, **kwargs):
