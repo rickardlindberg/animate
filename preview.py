@@ -69,12 +69,12 @@ class Preview:
             for event in self.pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
-            screen.fill("purple")
+            screen.fill("black")
             surface = self.graphics.create_surface(400, 400)
             animation.update(elapsed_ms)
             animation.draw(surface)
 
-            image = self.pygame.image.frombuffer(surface.get_data(), (400, 400), "ARGB")
+            image = self.pygame.image.frombuffer(surface.get_data(), (400, 400), "BGRA")
             screen.blit(image, (0, 0))
 
             self.pygame.display.flip()
