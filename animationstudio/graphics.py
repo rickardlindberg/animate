@@ -32,6 +32,8 @@ class Graphics:
                     pass
                 def move_to(self, x, y):
                     pass
+                def translate(self, x, y):
+                    pass
                 def show_text(self, text):
                     pass
                 def set_font_size(self, size):
