@@ -78,11 +78,14 @@ class Graphics:
 
     @staticmethod
     def create():
-        return Graphics()
+        return Graphics(cairo)
 
     @staticmethod
     def create_null():
-        return Graphics()
+        return Graphics(cairo)
+
+    def __init__(self, cairo):
+        self.cairo = cairo
 
     def create_surface(self, width, height):
         return CairoSurfaceWrapper(cairo, width, height)
