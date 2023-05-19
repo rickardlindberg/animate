@@ -3,7 +3,8 @@ from animationstudio import *
 class ExampleAnimation(Animation):
 
     """
-    >>> ExampleAnimation().dry_run()
+    >>> ExampleAnimation().dry_run() # doctest: +ELLIPSIS
+    FillRect ...
     """
 
     def get_duration_in_ms(self):

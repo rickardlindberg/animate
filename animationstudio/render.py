@@ -52,6 +52,13 @@ class VideoRenderer:
             graphics=Graphics.create(),
         )
 
+    @staticmethod
+    def create_null():
+        return VideoRenderer(
+            process=Process.create_null(),
+            graphics=Graphics.create_null(),
+        )
+
     def __init__(self, process, graphics):
         self.process = process
         self.graphics = graphics
