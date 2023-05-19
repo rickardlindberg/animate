@@ -5,7 +5,8 @@ class VideoRenderer:
 
     """
     >>> process = Process.create_null()
-    >>> renderer = VideoRenderer(process=process)
+    >>> graphics = Graphics.create_null()
+    >>> renderer = VideoRenderer(process=process, graphics=graphics)
     >>> renderer.render(
     ...     animation=TestAnimation(),
     ...     destination="/tmp/animation.mp4",
@@ -31,12 +32,13 @@ class VideoRenderer:
     @staticmethod
     def create():
         return VideoRenderer(
-            process=Process.create()
+            process=Process.create(),
+            graphics=Graphics.create(),
         )
 
-    def __init__(self, process):
+    def __init__(self, process, graphics):
         self.process = process
-        self.graphics = Graphics()
+        self.graphics = graphics
 
     def render(self, animation, destination, fps):
         animation.reset()
