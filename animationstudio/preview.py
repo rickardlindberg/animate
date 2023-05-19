@@ -38,7 +38,7 @@ class Preview:
         )
 
     @staticmethod
-    def create_null(events=[pygame.event.Event(pygame.QUIT)]):
+    def create_null(events=[None, pygame.event.Event(pygame.QUIT)]):
         class NullScreen:
             def fill(self, color):
                 pass
@@ -95,7 +95,7 @@ class Preview:
             while running:
                 for event in self.pygame.event.get():
                     if event.type == pygame.QUIT:
-                        running = False
+                        raise ExitLoop()
                     elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                         raise ExitLoop(render=True)
                 screen.fill("black")
@@ -113,7 +113,8 @@ class Preview:
                     animation_elapsed_ms = 0
                     animation.reset()
         except ExitLoop as e:
-            self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
+            if e.render:
+                self.renderer.render(animation, fps=25, destination="/tmp/animation.mp4")
         finally:
             self.pygame.quit()
 
