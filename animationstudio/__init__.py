@@ -6,7 +6,14 @@ __all__ = [
     "run",
     "Animation",
     "Size",
+    "SIZE_4K",
+    "SIZE_HD",
+    "SIZE_720",
 ]
+
+SIZE_4K = Size(width=300, height=300)
+SIZE_HD = SIZE_4K.scale(0.5)
+SIZE_720 = SIZE_HD.scale(0.5)
 
 def run(animation):
     animation.dry_run()
