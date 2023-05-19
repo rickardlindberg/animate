@@ -34,6 +34,8 @@ class Graphics:
                     pass
                 def move_to(self, x, y):
                     pass
+                def set_line_width(self, width):
+                    pass
                 def translate(self, x, y):
                     pass
                 def rotate(self, amount):
@@ -112,6 +114,7 @@ class CairoSurfaceWrapper:
             ctx.fill()
             ctx.text_path(text)
             ctx.set_source_rgb(0.2, 1, 1)
+            ctx.set_line_width(3)
             ctx.stroke()
 
     def apply_generic_attributes(self, ctx, **kwargs):
