@@ -111,17 +111,19 @@ class CairoSurfaceWrapper:
             ).move(dy=extents.height)
             ctx.translate(position.x, position.y)
             ctx.text_path(text)
-            ctx.fill()
-            ctx.text_path(text)
-            ctx.set_source_rgb(0.2, 1, 1)
-            ctx.set_line_width(30)
-            ctx.stroke()
+
+    def fill_stroke(ctx, **kwargs):
+        if "color" in kwargs:
+            ctx.set_source_rgb(*kwargs["color"])
+        ctx.fill_preserve()
+        if "stroke_color" in kwargs:
+            ctx.set_source_rgb(*kwargs["stroke_color"])
+        ctx.set_line_width(30)
+        ctx.stroke()
 
     def apply_generic_attributes(self, ctx, **kwargs):
         if "scale" in kwargs:
             ctx.scale(kwargs["scale"], kwargs["scale"])
-        if "color" in kwargs:
-            ctx.set_source_rgb(*kwargs["color"])
         if "rotation" in kwargs:
             ctx.rotate(kwargs["rotation"])
 
