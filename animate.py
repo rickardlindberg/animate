@@ -1,8 +1,8 @@
-from render import TestAnimation
-from render import VideoRenderer
+from animations.test import TestAnimation
+from preview import Preview
 
 if __name__ == "__main__":
-    VideoRenderer.create().render(
+    Preview.create().render(
         animation=TestAnimation(),
         destination="/tmp/animation.mp4",
         fps=25,
