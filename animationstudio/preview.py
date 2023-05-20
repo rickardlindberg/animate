@@ -94,11 +94,11 @@ class Preview:
         self.animation_loader = animation_loader
 
     def run(self, animation, reload=None):
-        result = self.loop(animation)
+        result = self.loop(animation=animation, reload=reload)
         if result.render:
             self.renderer.render(result.animation, destination="/tmp/animation.mp4")
 
-    def loop(self, animation):
+    def loop(self, animation, reload):
         self.pygame.init()
         screen_size = Size(width=1280, height=720)
         screen = self.pygame.display.set_mode(screen_size)
