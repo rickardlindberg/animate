@@ -145,7 +145,7 @@ class ExitLoop(Exception):
 class AnimationLoader(Observable):
 
     """
-    >>> loader = AnimationLoader()
+    >>> loader = AnimationLoader.create()
     >>> events = loader.track_events()
     >>> animation = loader.load("example")
     >>> isinstance(animation, Animation)
@@ -154,17 +154,23 @@ class AnimationLoader(Observable):
     LOAD_ANIMATION_MODULE =>
     """
 
-    def __init__(self):
+    @staticmethod
+    def create():
+        return AnimationLoader(imoprtlib=importlib, os=os)
+
+    def __init__(self, imoprtlib, os):
         Observable.__init__(self)
+        self.importlib = importlib
+        self.os = os
         self.animation_module = None
 
     def load(self, name):
         if self.animation_module is None:
             self.notify("LOAD_ANIMATION_MODULE", {})
-            self.animation_module = importlib.import_module(name)
+            self.animation_module = self.importlib.import_module(name)
             self.stat(name)
         else:
-            importlib.reload(self.animation_module)
+            self.importlib.reload(self.animation_module)
         return self.animation_module.ExampleAnimation()
 
     def changed(self, name):
@@ -173,4 +179,4 @@ class AnimationLoader(Observable):
         return old_modified_time != self.modified_time
 
     def stat(self, name):
-        self.modified_time = os.stat(self.animation_module.__file__).st_mtime
+        self.modified_time = self.os.stat(self.animation_module.__file__).st_mtime
