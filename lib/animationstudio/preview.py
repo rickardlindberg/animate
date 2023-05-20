@@ -1,4 +1,5 @@
 from animationstudio.animation import Animation
+from animationstudio.events import Events
 from animationstudio.events import Observable
 from animationstudio.geometry import Size
 from animationstudio.graphics import Graphics
@@ -9,7 +10,7 @@ import pygame
 import importlib
 import os
 
-class Preview:
+class Preview(Observable):
 
     """
     I run and quit:
@@ -20,10 +21,16 @@ class Preview:
 
     I kick off rendering if 'r' is pressed:
 
+    >>> renderer = VideoRenderer.create_null()
+    >>> events = renderer.track_events()
     >>> preview = Preview.create_null(
-    ...     events=[pygame.event.Event(pygame.KEYDOWN, key=pygame.K_r)]
-    ... ).run(Animation()) # doctest: +ELLIPSIS
-    Write /tmp/frame0001.png
+    ...     events=[pygame.event.Event(pygame.KEYDOWN, key=pygame.K_r)],
+    ...     renderer=renderer
+    ... )
+    >>> preview.run(Animation())
+    >>> events # doctest: +ELLIPSIS
+    Write =>
+        path: '/tmp/frame0001.png'
     ...
 
     I can create myself:
@@ -42,7 +49,7 @@ class Preview:
         )
 
     @staticmethod
-    def create_null(events=[None, pygame.event.Event(pygame.QUIT)]):
+    def create_null(events=[None, pygame.event.Event(pygame.QUIT)], renderer=VideoRenderer.create_null()):
         class NullScreen:
             def fill(self, color):
                 pass
@@ -83,11 +90,12 @@ class Preview:
         return Preview(
             pygame=NullPygame(),
             graphics=Graphics.create_null(),
-            renderer=VideoRenderer.create_null(),
+            renderer=renderer,
             animation_loader=AnimationLoader.create_null()
         )
 
     def __init__(self, pygame, graphics, renderer, animation_loader):
+        Observable.__init__(self)
         self.pygame = pygame
         self.graphics = graphics
         self.renderer = renderer

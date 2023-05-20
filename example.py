@@ -4,9 +4,11 @@ class ExampleAnimation(Animation):
 
     """
     >>> ExampleAnimation().dry_run() # doctest: +ELLIPSIS
-    Write /tmp/frame0001.png
+    Write =>
+        path: '/tmp/frame0001.png'
     ...
-    Write /tmp/frame0075.png
+    Write =>
+        path: '/tmp/frame0075.png'
     """
 
     def get_size(self):

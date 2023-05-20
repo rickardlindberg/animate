@@ -5,8 +5,11 @@ class Animation:
     def dry_run(self):
         from animationstudio.preview import Preview
         from animationstudio.render import VideoRenderer
-        Preview.create_null().run(animation=self)
-        VideoRenderer.create_null().render(animation=self, destination="/tmp/animation.mp4")
+        from animationstudio.events import Events
+        events = Events()
+        events.track(Preview.create_null()).run(animation=self)
+        events.track(VideoRenderer.create_null()).render(animation=self, destination="/tmp/animation.mp4")
+        return events
 
     def get_size(self):
         return Size(width=400, height=400)
