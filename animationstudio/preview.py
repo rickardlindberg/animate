@@ -153,6 +153,7 @@ class AnimationLoader(Observable):
     """
 
     def __init__(self):
+        Observable.__init__(self)
         self.animation_module = None
 
     def load(self, name):
