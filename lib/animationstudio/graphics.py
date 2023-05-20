@@ -1,3 +1,4 @@
+from animationstudio.events import Observable
 from animationstudio.geometry import Point
 from animationstudio.geometry import Size
 
@@ -63,7 +64,7 @@ class Graphics:
     def create_surface(self, size, scale_factor=1):
         return CairoSurfaceWrapper(self.cairo, size, scale_factor)
 
-class CairoSurfaceWrapper:
+class CairoSurfaceWrapper(Observable):
 
     """
     >>> s = CairoSurfaceWrapper(cairo, Size(width=400, height=400), 1)
