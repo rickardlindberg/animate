@@ -159,7 +159,7 @@ class AnimationLoader:
             print("Load")
             self.animation_module = importlib.import_module(name)
             self.stat(name)
-        if self.changed(name):
+        else:
             importlib.reload(self.animation_module)
         return self.animation_module.ExampleAnimation()
 
