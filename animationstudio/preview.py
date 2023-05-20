@@ -152,21 +152,33 @@ class AnimationLoader(Observable):
     True
     >>> events
     LOAD_ANIMATION_MODULE =>
+
+    >>> animation = AnimationLoader.create_null().load("i_dont_care_module")
+    >>> isinstance(animation, Animation)
+    True
     """
 
     @staticmethod
     def create():
-        return AnimationLoader(imoprtlib=importlib, os=os)
+        return AnimationLoader(importlib=importlib, os=os)
 
     @staticmethod
     def create_null():
+        class NullModule:
+            __file__ = "null_module.py"
+            class ExampleAnimation(Animation):
+                pass
         class NullImportlib:
-            pass
+            def import_module(self, name):
+                return NullModule()
+        class NullStat:
+            st_mtime = 0
         class NullOs:
-            pass
-        return AnimationLoader(imoprtlib=NullImportlib(), os=NullOs())
+            def stat(self, path):
+                return NullStat()
+        return AnimationLoader(importlib=NullImportlib(), os=NullOs())
 
-    def __init__(self, imoprtlib, os):
+    def __init__(self, importlib, os):
         Observable.__init__(self)
         self.importlib = importlib
         self.os = os
