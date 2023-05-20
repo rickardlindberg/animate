@@ -111,7 +111,7 @@ class Preview:
         try:
             while True:
                 if reload and self.animation_loader.changed(reload):
-                    animation = self.animation.load(reload)
+                    animation = self.animation_loader.load(reload)
                     animation.reset()
                 for event in self.pygame.event.get():
                     if event.type == pygame.QUIT:
