@@ -68,9 +68,11 @@ class CairoSurfaceWrapper(Observable):
 
     """
     >>> s = CairoSurfaceWrapper(cairo, Size(width=400, height=400), 1)
+    >>> events = s.track_events()
     >>> s.fill_rect(0, 0, 10, 10, color=(0.5, 1, 0.3))
+    >>> events
     FillRect =>
-      x: 0
+        x: 0
     """
 
     def __init__(self, cairo, size, scale_factor):
@@ -94,8 +96,7 @@ class CairoSurfaceWrapper(Observable):
             ctx.restore()
 
     def fill_rect(self, x, y, width, height, **kwargs):
-        print("FillRect =>")
-        print(f"  x: {x}")
+        self.notify("FillRect", {"x": x})
         with self.ctx() as ctx:
             self.apply_generic_attributes(ctx, **kwargs)
             ctx.rectangle(x, y, width, height)

@@ -4,14 +4,8 @@ class ExampleAnimation(Animation):
 
     """
     >>> ExampleAnimation().dry_run() # doctest: +ELLIPSIS
-    FillRect =>
-      x: 10.0
-    FillRect =>
-      x: 10
     Write /tmp/frame0001.png
     ...
-    FillRect =>
-      x: 306.0
     Write /tmp/frame0075.png
     """
 
