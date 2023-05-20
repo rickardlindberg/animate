@@ -20,6 +20,6 @@ SIZE_4K = Size(width=3840, height=2160)
 SIZE_HD = SIZE_4K.scale(0.5)
 SIZE_720 = SIZE_HD.scale(0.666667)
 
-def run(animation):
+def run(animation, reload=None):
     animation.dry_run()
-    Preview.create().run(animation=animation)
+    Preview.create().run(animation=animation, reload=reload)
