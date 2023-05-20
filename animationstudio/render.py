@@ -1,5 +1,4 @@
 from animationstudio.graphics import Graphics
-from animationstudio.process import Process
 
 class VideoRenderer:
 
@@ -11,19 +10,16 @@ class VideoRenderer:
     @staticmethod
     def create():
         return VideoRenderer(
-            process=Process.create(),
             graphics=Graphics.create(),
         )
 
     @staticmethod
     def create_null():
         return VideoRenderer(
-            process=Process.create_null(),
             graphics=Graphics.create_null(),
         )
 
-    def __init__(self, process, graphics):
-        self.process = process
+    def __init__(self, graphics):
         self.graphics = graphics
 
     def render(self, animation, destination):

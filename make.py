@@ -23,7 +23,6 @@ if __name__ == "__main__":
             "animationstudio",
             "animationstudio.events",
             "animationstudio.graphics",
-            "animationstudio.process",
             "animationstudio.render",
             "animationstudio.preview",
             "animationstudio.geometry",
