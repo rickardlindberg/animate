@@ -148,9 +148,10 @@ class AnimationLoader(Observable):
     >>> loader = AnimationLoader()
     >>> events = loader.track_events()
     >>> animation = loader.load("example")
-    Load
     >>> isinstance(animation, Animation)
     True
+    >>> events
+    LOAD_ANIMATION_MODULE =>
     """
 
     def __init__(self):
@@ -159,7 +160,7 @@ class AnimationLoader(Observable):
 
     def load(self, name):
         if self.animation_module is None:
-            print("Load")
+            self.notify("LOAD_ANIMATION_MODULE", {})
             self.animation_module = importlib.import_module(name)
             self.stat(name)
         else:
