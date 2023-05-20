@@ -21,8 +21,6 @@ class Preview:
     ... ).run(Animation()) # doctest: +ELLIPSIS
     Write /tmp/frame0001.png
     ...
-    PROCESS =>
-      command: ['ffmpeg', '-framerate', '25', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
 
     I can create myself:
 

@@ -13,8 +13,6 @@ class ExampleAnimation(Animation):
     FillRect =>
       x: 306.0
     Write /tmp/frame0075.png
-    PROCESS =>
-      command: ['ffmpeg', '-framerate', '25', '-pattern_type', 'glob', '-i', '/tmp/frame*.png', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '/tmp/animation.mp4']
     """
 
     def get_size(self):

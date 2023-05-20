@@ -35,12 +35,3 @@ class VideoRenderer:
             animation.draw(surface)
             surface.write_to_file(frame)
             animation.update(1000/fps)
-        self.process.run([
-            "ffmpeg",
-            "-framerate", f"{fps}",
-            "-pattern_type", "glob",
-            "-i", "/tmp/frame*.png",
-            "-c:v", "libx264",
-            "-pix_fmt", "yuv420p",
-            destination,
-        ])
