@@ -100,7 +100,7 @@ class Preview:
 
     def loop(self, animation, reload):
         self.pygame.init()
-        screen_size = Size(width=500, height=500)
+        screen_size = Size(width=700, height=700)
         screen = self.pygame.display.set_mode(screen_size)
         clock = self.pygame.time.Clock()
         if reload:
