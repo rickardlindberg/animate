@@ -37,7 +37,8 @@ class Preview:
         return Preview(
             pygame=pygame,
             graphics=Graphics.create(),
-            renderer=VideoRenderer.create()
+            renderer=VideoRenderer.create(),
+            animation_loader=AnimationLoader.create()
         )
 
     @staticmethod
@@ -82,13 +83,15 @@ class Preview:
         return Preview(
             pygame=NullPygame(),
             graphics=Graphics.create_null(),
-            renderer=VideoRenderer.create_null()
+            renderer=VideoRenderer.create_null(),
+            animation_loader=AnimationLoader.create_null()
         )
 
-    def __init__(self, pygame, graphics, renderer):
+    def __init__(self, pygame, graphics, renderer, animation_loader):
         self.pygame = pygame
         self.graphics = graphics
         self.renderer = renderer
+        self.animation_loader = animation_loader
 
     def run(self, animation):
         result = self.loop(animation)
