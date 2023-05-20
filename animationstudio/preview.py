@@ -1,4 +1,5 @@
 from animationstudio.animation import Animation
+from animationstudio.events import Observable
 from animationstudio.geometry import Size
 from animationstudio.graphics import Graphics
 from animationstudio.render import VideoRenderer
@@ -141,7 +142,7 @@ class ExitLoop(Exception):
         Exception.__init__(self)
         self.render = render
 
-class AnimationLoader:
+class AnimationLoader(Observable):
 
     """
     >>> loader = AnimationLoader()
