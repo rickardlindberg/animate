@@ -7,4 +7,4 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from animationstudio.preview import Preview
 
-Preview.create().run(reload=sys.arvg[1])
+Preview.create().run(reload=sys.argv[1])
