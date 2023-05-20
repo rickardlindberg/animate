@@ -168,9 +168,9 @@ class AnimationLoader(Observable):
         return self.animation_module.ExampleAnimation()
 
     def changed(self, name):
-        x = self.modified_time
+        old_modified_time = self.modified_time
         self.stat(name)
-        return x != self.modified_time
+        return old_modified_time != self.modified_time
 
     def stat(self, name):
         self.modified_time = os.stat(f"{name}.py").st_mtime
