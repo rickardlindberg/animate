@@ -2,6 +2,7 @@
 
 import doctest
 import importlib
+import os
 import subprocess
 import sys
 import unittest
@@ -17,6 +18,7 @@ def usage():
 if __name__ == "__main__":
     command = sys.argv[1:]
     if command == ["build"]:
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), "lib"))
         suite = unittest.TestSuite()
         for module in [
             "example",
