@@ -103,6 +103,8 @@ class Preview:
         screen_size = Size(width=1280, height=720)
         screen = self.pygame.display.set_mode(screen_size)
         clock = self.pygame.time.Clock()
+        if reload:
+            animation = self.animation.load(reload)
         animation.reset()
         elapsed_ms = 0
         animation_elapsed_ms = 0
