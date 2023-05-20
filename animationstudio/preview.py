@@ -105,6 +105,7 @@ class Preview:
         clock = self.pygame.time.Clock()
         if reload:
             animation = self.animation_loader.load(reload)
+            animation.dry_run()
         else:
             animation = animation
         animation.reset()
