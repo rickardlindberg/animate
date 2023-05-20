@@ -93,7 +93,7 @@ class Preview:
         self.renderer = renderer
         self.animation_loader = animation_loader
 
-    def run(self, animation):
+    def run(self, animation, reload=None):
         result = self.loop(animation)
         if result.render:
             self.renderer.render(animation, destination="/tmp/animation.mp4")
