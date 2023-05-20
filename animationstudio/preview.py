@@ -158,6 +158,14 @@ class AnimationLoader(Observable):
     def create():
         return AnimationLoader(imoprtlib=importlib, os=os)
 
+    @staticmethod
+    def create_null():
+        class NullImportlib:
+            pass
+        class NullOs:
+            pass
+        return AnimationLoader(imoprtlib=NullImportlib(), os=NullOs())
+
     def __init__(self, imoprtlib, os):
         Observable.__init__(self)
         self.importlib = importlib
