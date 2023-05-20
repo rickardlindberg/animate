@@ -46,7 +46,12 @@ class Graphics:
                 def set_font_size(self, size):
                     pass
                 def text_extents(self, text):
-                    return Size(100, 100)
+                    class E:
+                        x_bearing = 0
+                        y_bearing = 0
+                        width = 100
+                        height = 100
+                    return E()
             Context = NullContext
             class NullImageSurface:
                 def __init__(self, format_, width, height):
@@ -105,13 +110,13 @@ class CairoSurfaceWrapper(Observable):
     def text(self, text, position, pointspec="center", **kwargs):
         with self.ctx() as ctx:
             ctx.set_font_size(250)
+            extents = ctx.text_extents(text)
             ctx.translate(position.x, position.y)
             self.apply_generic_attributes(ctx, **kwargs)
-            extents = ctx.text_extents(text)
             position = Point(0, 0).adjust(
                 Size(width=extents.width, height=extents.height),
                 pointspec
-            ).move(dy=extents.height)
+            ).move(dx=-extents.x_bearing, dy=-extents.y_bearing)
             ctx.translate(position.x, position.y)
             ctx.text_path(text)
             self.fill_stroke(ctx, **kwargs)
