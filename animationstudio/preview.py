@@ -156,6 +156,6 @@ class AnimationLoader:
     def load(self, name):
         if self.animation_module is None:
             self.animation_module = importlib.import_module(name)
-            self.modified_time = os.stat(f"{name}.py")
+            self.modified_time = os.stat(f"{name}.py").st_mtime
         importlib.reload(self.animation_module)
         return self.animation_module.ExampleAnimation()
