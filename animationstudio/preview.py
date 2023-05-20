@@ -96,7 +96,7 @@ class Preview:
     def run(self, animation, reload=None):
         result = self.loop(animation)
         if result.render:
-            self.renderer.render(animation, destination="/tmp/animation.mp4")
+            self.renderer.render(result.animation, destination="/tmp/animation.mp4")
 
     def loop(self, animation):
         self.pygame.init()
@@ -112,7 +112,7 @@ class Preview:
                     if event.type == pygame.QUIT:
                         raise ExitLoop()
                     elif event.type == pygame.KEYDOWN and event.key == pygame.K_r:
-                        raise ExitLoop(render=True)
+                        raise ExitLoop(render=True, animation=animation)
                 screen.fill("gray")
                 scale_factor = animation.get_size().scale_factor(screen_size.scale(0.90))
                 preview_size = animation.get_size().scale(scale_factor)
@@ -141,9 +141,10 @@ class Preview:
 
 class ExitLoop(Exception):
 
-    def __init__(self, render=False):
+    def __init__(self, render=False, animation=None):
         Exception.__init__(self)
         self.render = render
+        self.animation = animation
 
 class AnimationLoader(Observable):
 
