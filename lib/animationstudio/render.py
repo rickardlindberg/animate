@@ -1,6 +1,7 @@
+from animationstudio.events import Observable
 from animationstudio.graphics import Graphics
 
-class VideoRenderer:
+class VideoRenderer(Observable):
 
     """
     >>> isinstance(VideoRenderer.create(), VideoRenderer)
