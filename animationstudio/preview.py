@@ -151,4 +151,4 @@ class AnimationLoader:
 
     def load(self, name):
         module = importlib.import_module(name)
-        return module.Animation()
+        return module.ExampleAnimation()
