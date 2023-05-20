@@ -5,6 +5,8 @@ from animationstudio.render import VideoRenderer
 
 import pygame
 
+import importlib
+
 class Preview:
 
     """
@@ -137,3 +139,16 @@ class ExitLoop(Exception):
     def __init__(self, render=False):
         Exception.__init__(self)
         self.render = render
+
+class AnimationLoader:
+
+    """
+    >>> loader = AnimationLoader()
+    >>> animation = loader.load("example")
+    >>> isinstance(animation, Animation)
+    True
+    """
+
+    def load(self, name):
+        module = importlib.import_module(name)
+        return module.Animation()
