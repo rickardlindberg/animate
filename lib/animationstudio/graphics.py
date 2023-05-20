@@ -74,6 +74,7 @@ class CairoSurfaceWrapper(Observable):
     """
 
     def __init__(self, cairo, size, scale_factor):
+        Observable.__init__(self)
         self.cairo = cairo
         self.surface = self.cairo.ImageSurface(
             self.cairo.FORMAT_ARGB32,
