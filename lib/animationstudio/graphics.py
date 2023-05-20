@@ -107,10 +107,14 @@ class CairoSurfaceWrapper(Observable):
             ctx.rectangle(x, y, width, height)
             self.fill_stroke(ctx, **kwargs)
 
-    def text(self, text, position, pointspec="center", **kwargs):
+    def text_size(self, text, **kwargs):
         with self.ctx() as ctx:
-            ctx.set_font_size(250)
-            extents = ctx.text_extents(text)
+            self.apply_generic_attributes(ctx, **kwargs)
+            return ctx.text_extents(text)
+
+    def text(self, text, position, pointspec="center", **kwargs):
+        extents = self.text_size(text, **kwargs)
+        with self.ctx() as ctx:
             ctx.translate(position.x, position.y)
             self.apply_generic_attributes(ctx, **kwargs)
             position = Point(0, 0).adjust(
@@ -135,6 +139,7 @@ class CairoSurfaceWrapper(Observable):
             ctx.scale(kwargs["scale"], kwargs["scale"])
         if "rotation" in kwargs:
             ctx.rotate(kwargs["rotation"])
+        ctx.set_font_size(kwargs.get("font_size", 250))
 
     def write_to_file(self, destination):
         self.surface.write_to_png(destination)
