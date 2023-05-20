@@ -32,4 +32,5 @@ class VideoRenderer(Observable):
             surface = self.graphics.create_surface(animation.get_size())
             animation.draw(surface)
             surface.write_to_file(frame)
+            self.notify("Write", {"path": frame})
             animation.update(1000/fps)
