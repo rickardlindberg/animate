@@ -146,6 +146,7 @@ class AnimationLoader:
     """
     >>> loader = AnimationLoader()
     >>> animation = loader.load("example")
+    Load
     >>> isinstance(animation, Animation)
     True
     """
@@ -155,7 +156,17 @@ class AnimationLoader:
 
     def load(self, name):
         if self.animation_module is None:
+            print("Load")
             self.animation_module = importlib.import_module(name)
-            self.modified_time = os.stat(f"{name}.py").st_mtime
-        importlib.reload(self.animation_module)
+            self.stat(name)
+        if self.changed(name):
+            importlib.reload(self.animation_module)
         return self.animation_module.ExampleAnimation()
+
+    def changed(self, name):
+        x = self.modified_time
+        self.stat(name)
+        return x != self.modified_time
+
+    def stat(self, name):
+        self.modified_time = os.stat(f"{name}.py").st_mtime
