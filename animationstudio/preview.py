@@ -93,7 +93,7 @@ class Preview:
         self.renderer = renderer
         self.animation_loader = animation_loader
 
-    def run(self, animation, reload=None):
+    def run(self, animation=None, reload=None):
         result = self.loop(animation=animation, reload=reload)
         if result.render:
             self.renderer.render(result.animation, destination="/tmp/animation.mp4")
@@ -105,6 +105,8 @@ class Preview:
         clock = self.pygame.time.Clock()
         if reload:
             animation = self.animation_loader.load(reload)
+        else:
+            animation = animation
         animation.reset()
         elapsed_ms = 0
         animation_elapsed_ms = 0
