@@ -100,11 +100,15 @@ class CairoSurfaceWrapper(Observable):
         finally:
             ctx.restore()
 
-    def fill_rect(self, x, y, width, height, **kwargs):
+    def fill_rect(self, x, y, width, height, pointspec="center", **kwargs):
         self.notify("FillRect", {"x": x})
         with self.ctx() as ctx:
             self.apply_generic_attributes(ctx, **kwargs)
-            ctx.rectangle(x, y, width, height)
+            position = Point(x, y).adjust(
+                Size(width=width, height=height),
+                pointspec
+            )
+            ctx.rectangle(*position, width, height)
             self.fill_stroke(ctx, **kwargs)
 
     def text_size(self, text, **kwargs):
