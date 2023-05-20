@@ -208,4 +208,8 @@ class AnimationLoader(Observable):
         return old_modified_time != self.modified_time
 
     def stat(self, name):
-        self.modified_time = self.os.stat(self.animation_module.__file__).st_mtime
+        try:
+            self.modified_time = self.os.stat(self.animation_module.__file__).st_mtime
+        except FileNotFoundError:
+            # Vim save removes file temporary?
+            pass
