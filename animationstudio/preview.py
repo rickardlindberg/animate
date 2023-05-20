@@ -110,6 +110,9 @@ class Preview:
         animation_elapsed_ms = 0
         try:
             while True:
+                if reload and self.animation_loader.changed(reload):
+                    animation = self.animation.load(reload)
+                    animation.reset()
                 for event in self.pygame.event.get():
                     if event.type == pygame.QUIT:
                         raise ExitLoop()
