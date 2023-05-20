@@ -21,6 +21,7 @@ class VideoRenderer(Observable):
         )
 
     def __init__(self, graphics):
+        Observable.__init__(self)
         self.graphics = graphics
 
     def render(self, animation, destination):
