@@ -173,4 +173,4 @@ class AnimationLoader(Observable):
         return old_modified_time != self.modified_time
 
     def stat(self, name):
-        self.modified_time = os.stat(f"{name}.py").st_mtime
+        self.modified_time = os.stat(self.animation_module.__file__).st_mtime
