@@ -6,6 +6,7 @@ from animationstudio.render import VideoRenderer
 import pygame
 
 import importlib
+import os
 
 class Preview:
 
@@ -153,6 +154,8 @@ class AnimationLoader:
         self.animation_module = None
 
     def load(self, name):
-        self.animation_module = importlib.import_module(name)
+        if self.animation_module is None:
+            self.animation_module = importlib.import_module(name)
+            self.modified_time = os.stat(f"{name}.py")
         importlib.reload(self.animation_module)
         return self.animation_module.ExampleAnimation()
