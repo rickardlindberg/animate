@@ -146,6 +146,7 @@ class AnimationLoader(Observable):
 
     """
     >>> loader = AnimationLoader()
+    >>> events = loader.track_events()
     >>> animation = loader.load("example")
     Load
     >>> isinstance(animation, Animation)
